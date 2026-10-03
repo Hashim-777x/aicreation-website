@@ -1,0 +1,77 @@
+---
+import { navItems } from '@/data/site';
+import Brand from './Brand.astro';
+interface Props { theme?: 'light' | 'dark' | 'auto'; brandTheme?: 'light' | 'dark'; sticky?: boolean }
+const { theme = 'dark', brandTheme = theme === 'light' ? 'light' : 'dark', sticky = false } = Astro.props;
+const initialTheme = theme === 'auto' ? 'dark' : theme;
+---
+<header class:list={['site-header', `header-${initialTheme}`, { 'header-sticky': sticky }]} data-header data-header-mode={theme} data-theme={initialTheme} data-brand-theme={brandTheme}>
+  <a class="brand" href="/" aria-label="AIcreation.pro home"><Brand variant={brandTheme === 'light' ? 'white' : 'black'} /></a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+    <Brand variant={initialTheme === 'light' ? 'white' : 'black'} symbolOnly={true} />
+    <span>Menu</span><span aria-hidden="true">＋</span>
+  </button>
+  <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+    {navItems.map((item) => <a href={item.href} aria-current={Astro.url.pathname === item.href ? 'page' : undefined}>{item.label}</a>)}
+  </nav>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const nav = document.querySelector<HTMLElement>('.site-nav');
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  let frame = 0;
+  let headerScrolled = false;
+  const enterScrolledAt = 88;
+  const leaveScrolledAt = 64;
+
+  const setTheme = (theme: 'light' | 'dark') => {
+    if (!header || header.dataset.theme === theme) return;
+    header.dataset.theme = theme;
+    header.classList.toggle('header-light', theme === 'light');
+    header.classList.toggle('header-dark', theme === 'dark');
+    header.querySelectorAll<HTMLImageElement>('.nav-toggle .brand-symbol').forEach((symbol) => {
+      symbol.src = `/media/logo-symbol-${theme === 'light' ? 'white' : 'black'}.svg`;
+    });
+  };
+
+  const updateHeader = () => {
+    if (!header) return;
+    const scrolled = headerScrolled
+      ? window.scrollY >= leaveScrolledAt
+      : window.scrollY >= enterScrolledAt;
+    headerScrolled = scrolled;
+    header.classList.toggle('is-scrolled', scrolled);
+    const currentBrandTheme = scrolled ? header.dataset.theme : header.dataset.brandTheme;
+    header.querySelectorAll<HTMLImageElement>('.brand > .brand-lockup .brand-symbol').forEach((symbol) => {
+      symbol.src = `/media/logo-symbol-${currentBrandTheme === 'light' ? 'white' : 'black'}.svg`;
+    });
+    if (header.dataset.headerMode === 'auto') {
+      const sections = [...document.querySelectorAll<HTMLElement>('[data-header-theme]')];
+      const active = sections.find((section) => {
+        const bounds = section.getBoundingClientRect();
+        return bounds.top <= 90 && bounds.bottom > 90;
+      });
+      const knownTheme = active?.dataset.headerTheme;
+      if (knownTheme === 'light' || knownTheme === 'dark') setTheme(knownTheme);
+    }
+    frame = 0;
+  };
+
+  const requestHeaderUpdate = () => {
+    if (!frame) frame = requestAnimationFrame(updateHeader);
+  };
+
+  window.addEventListener('scroll', requestHeaderUpdate, { passive: true });
+  window.addEventListener('resize', requestHeaderUpdate, { passive: true });
+  updateHeader();
+  button?.addEventListener('click', () => {
+    const open = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!open));
+    nav?.toggleAttribute('data-open', !open);
+  });
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+    button?.setAttribute('aria-expanded', 'false');
+    nav.removeAttribute('data-open');
+  }));
+</script>

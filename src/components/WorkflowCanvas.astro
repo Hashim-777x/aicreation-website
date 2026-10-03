@@ -1,0 +1,93 @@
+---
+import WorkflowNode from './WorkflowNode.astro';
+import type { WorkflowData } from '@/data/workflows';
+interface Props { workflow: WorkflowData; class?: string; compact?: boolean }
+const { workflow, class: className = '', compact = false } = Astro.props;
+---
+<section class:list={['workflow-canvas', `workflow-canvas--${workflow.id}`, compact && 'workflow-canvas--compact', className]} data-workflow-canvas data-workflow-id={workflow.id} aria-labelledby={`${workflow.id}-title`}>
+  <header class="workflow-canvas__header">
+    <div><p class="concept-label">{workflow.label}</p><h3 id={`${workflow.id}-title`}>{workflow.title}</h3></div>
+    <p>{workflow.summary}</p>
+  </header>
+  <div class="workflow-canvas__stage" data-workflow-stage>
+    <svg class="workflow-connectors" data-workflow-connectors aria-hidden="true">
+      <defs><marker id={`${workflow.id}-arrow`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+      {workflow.connections.map((connection) => <path class:list={[connection.style === 'dotted' && 'is-dotted']} data-from={connection.from} data-to={connection.to} data-from-port={connection.fromPort ?? 'right'} data-to-port={connection.toPort ?? 'left'} data-compact-from-port={connection.compactFromPort} data-compact-to-port={connection.compactToPort} marker-end={`url(#${workflow.id}-arrow)`}></path>)}
+    </svg>
+    <ol class="workflow-node-list">
+      {workflow.nodes.map((node, index) => {
+        const ports = [...new Set(workflow.connections.flatMap((connection) => [connection.from === node.id ? (connection.fromPort ?? 'right') : null, connection.to === node.id ? (connection.toPort ?? 'left') : null, connection.from === node.id ? connection.compactFromPort : null, connection.to === node.id ? connection.compactToPort : null]).filter(Boolean))] as ('left'|'right'|'top'|'bottom')[];
+        return <WorkflowNode node={node} selected={index === 0} ports={ports} />;
+      })}
+    </ol>
+    <p class="visually-hidden">{workflow.nodes.map((node) => `${node.step}: ${node.title}. ${node.copy}.`).join(' ')}</p>
+  </div>
+  <div class="workflow-explanation" aria-live="polite">
+    <span data-workflow-active-step>{workflow.nodes[0].step}</span>
+    <p><strong data-workflow-active-title>{workflow.nodes[0].title}</strong><span data-workflow-active-copy>{workflow.nodes[0].copy}</span></p>
+  </div>
+</section>
+
+<script>
+  const setupWorkflow = (canvas: HTMLElement) => {
+    if (canvas.dataset.ready === 'true') return;
+    canvas.dataset.ready = 'true';
+    const stage = canvas.querySelector<HTMLElement>('[data-workflow-stage]');
+    const svg = canvas.querySelector<SVGSVGElement>('[data-workflow-connectors]');
+    const nodes = [...canvas.querySelectorAll<HTMLButtonElement>('[data-workflow-node]')];
+    const paths = [...canvas.querySelectorAll<SVGPathElement>('[data-from]')];
+    const activeStep = canvas.querySelector<HTMLElement>('[data-workflow-active-step]');
+    const activeTitle = canvas.querySelector<HTMLElement>('[data-workflow-active-title]');
+    const activeCopy = canvas.querySelector<HTMLElement>('[data-workflow-active-copy]');
+    if (!stage || !svg) return;
+    let drawFrame = 0;
+    const scheduleDraw = () => { if (!drawFrame) drawFrame = requestAnimationFrame(() => { drawFrame = 0; draw(); }); };
+    const draw = () => {
+      const bounds = stage.getBoundingClientRect();
+      svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+      paths.forEach((path) => {
+        const compact = canvas.dataset.workflowId === 'social-enquiry' && window.innerWidth < 1320;
+        const fromSide = compact && path.dataset.compactFromPort ? path.dataset.compactFromPort : path.dataset.fromPort;
+        const toSide = compact && path.dataset.compactToPort ? path.dataset.compactToPort : path.dataset.toPort;
+        const fromPort = canvas.querySelector<HTMLElement>(`[data-node-id="${path.dataset.from}"] [data-port="${fromSide}"]`);
+        const toPort = canvas.querySelector<HTMLElement>(`[data-node-id="${path.dataset.to}"] [data-port="${toSide}"]`);
+        if (!fromPort || !toPort) return;
+        const a = fromPort.getBoundingClientRect(); const b = toPort.getBoundingClientRect();
+        const x1 = a.left + a.width / 2 - bounds.left; const y1 = a.top + a.height / 2 - bounds.top;
+        const x2 = b.left + b.width / 2 - bounds.left; const y2 = b.top + b.height / 2 - bounds.top;
+        const vertical = fromSide === 'top' || fromSide === 'bottom' || toSide === 'top' || toSide === 'bottom';
+        if (vertical) {
+          const distance = Math.abs(y2 - y1); const handle = Math.max(48, Math.min(distance * .45, 180));
+          const direction = fromSide === 'top' ? -1 : 1; const targetDirection = toSide === 'bottom' ? 1 : -1;
+          path.setAttribute('d', `M ${x1} ${y1} C ${x1} ${y1 + handle * direction}, ${x2} ${y2 + handle * targetDirection}, ${x2} ${y2}`);
+        } else {
+          const distance = Math.abs(x2 - x1); const handle = Math.max(48, Math.min(distance * .45, 180));
+          const direction = fromSide === 'left' ? -1 : 1; const targetDirection = toSide === 'right' ? 1 : -1;
+          path.setAttribute('d', `M ${x1} ${y1} C ${x1 + handle * direction} ${y1}, ${x2 + handle * targetDirection} ${y2}, ${x2} ${y2}`);
+        }
+      });
+    };
+    const activate = (node: HTMLButtonElement) => {
+      const id = node.dataset.workflowNode ?? '';
+      nodes.forEach((item) => item.setAttribute('aria-pressed', String(item === node)));
+      paths.forEach((path) => path.classList.toggle('is-active', path.dataset.from === id || path.dataset.to === id));
+      if (activeStep) activeStep.textContent = node.querySelector<HTMLElement>('.workflow-node__step')?.textContent ?? '';
+      if (activeTitle) activeTitle.textContent = node.querySelector<HTMLElement>('strong')?.textContent ?? '';
+      if (activeCopy) activeCopy.textContent = node.dataset.nodeCopy ?? '';
+      scheduleDraw();
+    };
+    nodes.forEach((node) => {
+      node.addEventListener('pointerenter', () => activate(node));
+      node.addEventListener('focus', () => activate(node));
+      node.addEventListener('click', () => activate(node));
+    });
+    const resizeObserver = new ResizeObserver(scheduleDraw);
+    resizeObserver.observe(stage); nodes.forEach((node) => resizeObserver.observe(node));
+    const mutationObserver = new MutationObserver(scheduleDraw);
+    nodes.forEach((node) => mutationObserver.observe(node, { childList: true, subtree: true, characterData: true }));
+    window.addEventListener('resize', scheduleDraw, { passive: true });
+    document.fonts?.ready.then(scheduleDraw); scheduleDraw(); activate(nodes[0]);
+    window.addEventListener('beforeunload', () => { resizeObserver.disconnect(); mutationObserver.disconnect(); window.removeEventListener('resize', scheduleDraw); }, { once: true });
+  };
+  document.querySelectorAll<HTMLElement>('[data-workflow-canvas]').forEach(setupWorkflow);
+</script>

@@ -1,0 +1,60 @@
+---
+import '@fontsource/dm-sans/400.css';
+import '@fontsource/dm-sans/500.css';
+import '@fontsource/dm-sans/700.css';
+import '@fontsource/barlow-condensed/600.css';
+import '@fontsource/barlow-condensed/700.css';
+import '@/styles/global.css';
+import '@/styles/sections.css';
+import '@/styles/pages.css';
+
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'AIcreation.pro',
+  url: Astro.site?.href ?? Astro.url.origin,
+  email: 'hello@aicreation.pro',
+  description,
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#1d0708" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={Astro.url} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <slot />
+    <script>
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealItems = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
+      if (reduced) revealItems.forEach((item) => item.dataset.visible = 'true');
+      else {
+        const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+          if (entry.isIntersecting) { (entry.target as HTMLElement).dataset.visible = 'true'; revealObserver.unobserve(entry.target); }
+        }), { threshold: .14, rootMargin: '0px 0px -8% 0px' });
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
+      const managedVideos = [...document.querySelectorAll<HTMLVideoElement>('video[data-managed-video]')];
+      const videoObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+        const video = entry.target as HTMLVideoElement;
+        if (!reduced && entry.isIntersecting) video.play().catch(() => undefined); else video.pause();
+      }), { threshold: .35 });
+      managedVideos.forEach((video) => videoObserver.observe(video));
+    </script>
+  </body>
+</html>

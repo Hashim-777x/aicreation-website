@@ -1,0 +1,14 @@
+---
+interface Props {
+  variant?: 'white' | 'black';
+  symbolOnly?: boolean;
+  class?: string;
+}
+
+const { variant = 'white', symbolOnly = false, class: className } = Astro.props;
+const source = `/media/logo-symbol-${variant}.svg`;
+---
+<span class:list={['brand-lockup', { 'brand-symbol-only': symbolOnly }, className]}>
+  <img class="brand-symbol" src={source} alt="" width="30" height="30" />
+  {!symbolOnly && <span class="brand-wordmark">aicreation.pro</span>}
+</span>

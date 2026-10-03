@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+  <style>
+    path{fill:#08090a}
+    @media (prefers-color-scheme:dark){path{fill:#fff}}
+  </style>
+  <path d="M25 74C27 47 47 27 74 25c-1 23-19 46-49 49Z"/>
+  <path d="M77 25c3 23 19 44 48 50V33H96v9c-6-8-12-13-19-17Z"/>
+  <path d="M25 78c26 3 46 19 49 47-26-2-46-21-49-47Z"/>
+  <path d="M77 124c4-25 20-42 48-46v41H96v-9c-6 6-12 11-19 14Z"/>
+</svg>

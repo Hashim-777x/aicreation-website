@@ -1,0 +1,18 @@
+---
+import type { WorkflowData } from '@/data/workflows';
+interface Props { workflow: WorkflowData; tone?: 'light' | 'dark' }
+const { workflow, tone = 'light' } = Astro.props;
+---
+<article class:list={['workflow-story', `workflow-story--${tone}`]} data-workflow-story>
+  <header><p class="concept-label">{workflow.label}</p><h3>{workflow.title}</h3><p>{workflow.summary}</p></header>
+  <ol>
+    {workflow.nodes.map((node, index) => <li><button type="button" data-story-step aria-expanded={index === 0 ? 'true' : 'false'}><span>{node.step}</span><strong>{node.title}</strong><small>{node.copy}</small></button></li>)}
+  </ol>
+</article>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-workflow-story]').forEach((story) => {
+    const steps = [...story.querySelectorAll<HTMLButtonElement>('[data-story-step]')];
+    const activate = (active: HTMLButtonElement) => steps.forEach((step) => step.setAttribute('aria-expanded', String(step === active)));
+    steps.forEach((step) => { step.addEventListener('pointerenter', () => activate(step)); step.addEventListener('focus', () => activate(step)); step.addEventListener('click', () => activate(step)); });
+  });
+</script>

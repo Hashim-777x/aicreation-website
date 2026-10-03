@@ -1,0 +1,46 @@
+---
+interface Props {
+  desktop: string;
+  mobile: string;
+  alt: string;
+  class?: string;
+  widths?: { desktop: number[]; mobile: number[] };
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  width?: number;
+  height?: number;
+}
+
+const {
+  desktop,
+  mobile,
+  alt,
+  class: className,
+  widths = { desktop: [720, 1200], mobile: [640, 941] },
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  width = 1600,
+  height = 900,
+} = Astro.props;
+
+const srcset = (slug: string, sizes: number[], format: string) =>
+  sizes.map((width) => `/media/${slug}-${width}.${format} ${width}w`).join(', ');
+---
+
+<picture class={className}>
+  <source media="(max-width: 767px)" type="image/avif" srcset={srcset(mobile, widths.mobile, 'avif')} />
+  <source media="(max-width: 767px)" type="image/webp" srcset={srcset(mobile, widths.mobile, 'webp')} />
+  <source media="(min-width: 768px)" type="image/avif" srcset={srcset(desktop, widths.desktop, 'avif')} />
+  <source media="(min-width: 768px)" type="image/webp" srcset={srcset(desktop, widths.desktop, 'webp')} />
+  <source media="(max-width: 767px)" type="image/png" srcset={`/media/${mobile}-original.png`} />
+  <source media="(min-width: 768px)" type="image/png" srcset={`/media/${desktop}-original.png`} />
+  <img
+    src={`/media/${desktop}-original.png`}
+    alt={alt}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding={loading === 'eager' ? 'sync' : 'async'}
+    width={width}
+    height={height}
+  />
+</picture>

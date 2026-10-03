@@ -1,0 +1,20 @@
+---
+import Header from './Header.astro';
+import ResponsiveImage from './ResponsiveImage.astro';
+import ActionLink from './ActionLink.astro';
+interface Props {
+  eyebrow?: string; title: string; intro?: string; desktop: string; mobile: string;
+  widths?: { desktop:number[]; mobile:number[] }; theme?: 'light'|'dark'; headerTheme: 'light'|'dark'|'auto'; brandTheme?: 'light'|'dark'; class?: string; cta?: { label:string; href:string; variant?:'primary'|'inverse'|'copper'|'outline-light'|'text'; class?:string; external?:boolean; ariaLabel?:string };
+}
+const { eyebrow, title, intro, desktop, mobile, widths={desktop:[1280,1672],mobile:[640,941]}, theme='light', headerTheme, brandTheme, class:className='', cta } = Astro.props;
+---
+<section class:list={['page-hero', `page-hero-${theme}`, className]}>
+  <Header theme={headerTheme} brandTheme={brandTheme} />
+  <div class="page-hero-copy" data-reveal>
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1 set:html={title}></h1>
+    {intro && <p class="page-intro">{intro}</p>}
+    {cta && <ActionLink href={cta.href} label={cta.label} variant={cta.variant ?? (theme === 'dark' ? 'inverse' : 'primary')} class={cta.class} external={cta.external} ariaLabel={cta.ariaLabel} />}
+  </div>
+  <ResponsiveImage desktop={desktop} mobile={mobile} widths={widths} alt="Editorial concept artwork" class="page-hero-media" loading="eager" fetchpriority="high" />
+</section>

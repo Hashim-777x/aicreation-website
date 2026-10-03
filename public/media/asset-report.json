@@ -1,0 +1,1381 @@
+[
+  {
+    "file": "hero-fashion-desktop-original.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 1878072,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "hero-fashion-desktop-1280.avif",
+    "width": 1280,
+    "height": 720,
+    "bytes": 66202,
+    "format": "AVIF"
+  },
+  {
+    "file": "hero-fashion-desktop-1280.webp",
+    "width": 1280,
+    "height": 720,
+    "bytes": 105412,
+    "format": "WEBP"
+  },
+  {
+    "file": "hero-fashion-desktop-1672.avif",
+    "width": 1672,
+    "height": 941,
+    "bytes": 94319,
+    "format": "AVIF"
+  },
+  {
+    "file": "hero-fashion-desktop-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 156872,
+    "format": "WEBP"
+  },
+  {
+    "file": "hero-fashion-mobile-original.png",
+    "width": 941,
+    "height": 1672,
+    "bytes": 1889195,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "hero-fashion-mobile-640.avif",
+    "width": 640,
+    "height": 1137,
+    "bytes": 65608,
+    "format": "AVIF"
+  },
+  {
+    "file": "hero-fashion-mobile-640.webp",
+    "width": 640,
+    "height": 1137,
+    "bytes": 103074,
+    "format": "WEBP"
+  },
+  {
+    "file": "hero-fashion-mobile-941.avif",
+    "width": 941,
+    "height": 1672,
+    "bytes": 109279,
+    "format": "AVIF"
+  },
+  {
+    "file": "hero-fashion-mobile-941.webp",
+    "width": 941,
+    "height": 1672,
+    "bytes": 179506,
+    "format": "WEBP"
+  },
+  {
+    "file": "product-perfume-desktop-original.png",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 2124346,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "product-perfume-desktop-720.avif",
+    "width": 720,
+    "height": 540,
+    "bytes": 71679,
+    "format": "AVIF"
+  },
+  {
+    "file": "product-perfume-desktop-720.webp",
+    "width": 720,
+    "height": 540,
+    "bytes": 100092,
+    "format": "WEBP"
+  },
+  {
+    "file": "product-perfume-desktop-1200.avif",
+    "width": 1200,
+    "height": 900,
+    "bytes": 139498,
+    "format": "AVIF"
+  },
+  {
+    "file": "product-perfume-desktop-1200.webp",
+    "width": 1200,
+    "height": 900,
+    "bytes": 216794,
+    "format": "WEBP"
+  },
+  {
+    "file": "product-perfume-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 2248795,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "product-perfume-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 99382,
+    "format": "AVIF"
+  },
+  {
+    "file": "product-perfume-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 139096,
+    "format": "WEBP"
+  },
+  {
+    "file": "product-perfume-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 164254,
+    "format": "AVIF"
+  },
+  {
+    "file": "product-perfume-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 248644,
+    "format": "WEBP"
+  },
+  {
+    "file": "silver-fashion-desktop-original.png",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 2300221,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "silver-fashion-desktop-720.avif",
+    "width": 720,
+    "height": 540,
+    "bytes": 66032,
+    "format": "AVIF"
+  },
+  {
+    "file": "silver-fashion-desktop-720.webp",
+    "width": 720,
+    "height": 540,
+    "bytes": 89910,
+    "format": "WEBP"
+  },
+  {
+    "file": "silver-fashion-desktop-1200.avif",
+    "width": 1200,
+    "height": 900,
+    "bytes": 131414,
+    "format": "AVIF"
+  },
+  {
+    "file": "silver-fashion-desktop-1200.webp",
+    "width": 1200,
+    "height": 900,
+    "bytes": 198084,
+    "format": "WEBP"
+  },
+  {
+    "file": "silver-fashion-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 2334558,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "silver-fashion-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 85038,
+    "format": "AVIF"
+  },
+  {
+    "file": "silver-fashion-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 117802,
+    "format": "WEBP"
+  },
+  {
+    "file": "silver-fashion-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 136514,
+    "format": "AVIF"
+  },
+  {
+    "file": "silver-fashion-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 207666,
+    "format": "WEBP"
+  },
+  {
+    "file": "residence-desktop-original.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2534146,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "residence-desktop-960.avif",
+    "width": 960,
+    "height": 540,
+    "bytes": 134956,
+    "format": "AVIF"
+  },
+  {
+    "file": "residence-desktop-960.webp",
+    "width": 960,
+    "height": 540,
+    "bytes": 169992,
+    "format": "WEBP"
+  },
+  {
+    "file": "residence-desktop-1600.avif",
+    "width": 1600,
+    "height": 900,
+    "bytes": 283375,
+    "format": "AVIF"
+  },
+  {
+    "file": "residence-desktop-1600.webp",
+    "width": 1600,
+    "height": 900,
+    "bytes": 386576,
+    "format": "WEBP"
+  },
+  {
+    "file": "residence-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 2435398,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "residence-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 135802,
+    "format": "AVIF"
+  },
+  {
+    "file": "residence-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 164576,
+    "format": "WEBP"
+  },
+  {
+    "file": "residence-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 233238,
+    "format": "AVIF"
+  },
+  {
+    "file": "residence-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 305700,
+    "format": "WEBP"
+  },
+  {
+    "file": "hospitality-desktop-original.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2349862,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "hospitality-desktop-720.avif",
+    "width": 720,
+    "height": 405,
+    "bytes": 74393,
+    "format": "AVIF"
+  },
+  {
+    "file": "hospitality-desktop-720.webp",
+    "width": 720,
+    "height": 405,
+    "bytes": 97942,
+    "format": "WEBP"
+  },
+  {
+    "file": "hospitality-desktop-1200.avif",
+    "width": 1200,
+    "height": 675,
+    "bytes": 165068,
+    "format": "AVIF"
+  },
+  {
+    "file": "hospitality-desktop-1200.webp",
+    "width": 1200,
+    "height": 675,
+    "bytes": 223110,
+    "format": "WEBP"
+  },
+  {
+    "file": "hospitality-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 2472631,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "hospitality-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 133119,
+    "format": "AVIF"
+  },
+  {
+    "file": "hospitality-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 171030,
+    "format": "WEBP"
+  },
+  {
+    "file": "hospitality-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 236366,
+    "format": "AVIF"
+  },
+  {
+    "file": "hospitality-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 317216,
+    "format": "WEBP"
+  },
+  {
+    "file": "perfume-source-desktop-original.png",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 1365971,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "perfume-source-desktop-640.avif",
+    "width": 640,
+    "height": 480,
+    "bytes": 11036,
+    "format": "AVIF"
+  },
+  {
+    "file": "perfume-source-desktop-640.webp",
+    "width": 640,
+    "height": 480,
+    "bytes": 18334,
+    "format": "WEBP"
+  },
+  {
+    "file": "perfume-source-desktop-1000.avif",
+    "width": 1000,
+    "height": 750,
+    "bytes": 19864,
+    "format": "AVIF"
+  },
+  {
+    "file": "perfume-source-desktop-1000.webp",
+    "width": 1000,
+    "height": 750,
+    "bytes": 36522,
+    "format": "WEBP"
+  },
+  {
+    "file": "perfume-source-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 1336394,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "perfume-source-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 16607,
+    "format": "AVIF"
+  },
+  {
+    "file": "perfume-source-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 28768,
+    "format": "WEBP"
+  },
+  {
+    "file": "perfume-source-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 27088,
+    "format": "AVIF"
+  },
+  {
+    "file": "perfume-source-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 51814,
+    "format": "WEBP"
+  },
+  {
+    "file": "perfume-finished-desktop-original.png",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 1690829,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "perfume-finished-desktop-640.avif",
+    "width": 640,
+    "height": 480,
+    "bytes": 33417,
+    "format": "AVIF"
+  },
+  {
+    "file": "perfume-finished-desktop-640.webp",
+    "width": 640,
+    "height": 480,
+    "bytes": 48112,
+    "format": "WEBP"
+  },
+  {
+    "file": "perfume-finished-desktop-1000.avif",
+    "width": 1000,
+    "height": 750,
+    "bytes": 61040,
+    "format": "AVIF"
+  },
+  {
+    "file": "perfume-finished-desktop-1000.webp",
+    "width": 1000,
+    "height": 750,
+    "bytes": 94022,
+    "format": "WEBP"
+  },
+  {
+    "file": "perfume-finished-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 1621839,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "perfume-finished-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 40777,
+    "format": "AVIF"
+  },
+  {
+    "file": "perfume-finished-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 64666,
+    "format": "WEBP"
+  },
+  {
+    "file": "perfume-finished-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 67052,
+    "format": "AVIF"
+  },
+  {
+    "file": "perfume-finished-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 112860,
+    "format": "WEBP"
+  },
+  {
+    "file": "after-hours-desktop-original.png",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1764805,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "after-hours-desktop-800.avif",
+    "width": 800,
+    "height": 533,
+    "bytes": 34569,
+    "format": "AVIF"
+  },
+  {
+    "file": "after-hours-desktop-800.webp",
+    "width": 800,
+    "height": 533,
+    "bytes": 55292,
+    "format": "WEBP"
+  },
+  {
+    "file": "after-hours-desktop-1280.avif",
+    "width": 1280,
+    "height": 853,
+    "bytes": 67310,
+    "format": "AVIF"
+  },
+  {
+    "file": "after-hours-desktop-1280.webp",
+    "width": 1280,
+    "height": 853,
+    "bytes": 112672,
+    "format": "WEBP"
+  },
+  {
+    "file": "after-hours-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 1553914,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "after-hours-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 36469,
+    "format": "AVIF"
+  },
+  {
+    "file": "after-hours-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 60836,
+    "format": "WEBP"
+  },
+  {
+    "file": "after-hours-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 59825,
+    "format": "AVIF"
+  },
+  {
+    "file": "after-hours-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 106478,
+    "format": "WEBP"
+  },
+  {
+    "file": "form-in-motion-desktop-original.png",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2546741,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "form-in-motion-desktop-800.avif",
+    "width": 800,
+    "height": 533,
+    "bytes": 70698,
+    "format": "AVIF"
+  },
+  {
+    "file": "form-in-motion-desktop-800.webp",
+    "width": 800,
+    "height": 533,
+    "bytes": 94542,
+    "format": "WEBP"
+  },
+  {
+    "file": "form-in-motion-desktop-1280.avif",
+    "width": 1280,
+    "height": 853,
+    "bytes": 139764,
+    "format": "AVIF"
+  },
+  {
+    "file": "form-in-motion-desktop-1280.webp",
+    "width": 1280,
+    "height": 853,
+    "bytes": 204030,
+    "format": "WEBP"
+  },
+  {
+    "file": "form-in-motion-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 2290284,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "form-in-motion-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 81693,
+    "format": "AVIF"
+  },
+  {
+    "file": "form-in-motion-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 112754,
+    "format": "WEBP"
+  },
+  {
+    "file": "form-in-motion-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 132728,
+    "format": "AVIF"
+  },
+  {
+    "file": "form-in-motion-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 201422,
+    "format": "WEBP"
+  },
+  {
+    "file": "still-water-desktop-original.png",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2550657,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "still-water-desktop-800.avif",
+    "width": 800,
+    "height": 533,
+    "bytes": 99806,
+    "format": "AVIF"
+  },
+  {
+    "file": "still-water-desktop-800.webp",
+    "width": 800,
+    "height": 533,
+    "bytes": 123618,
+    "format": "WEBP"
+  },
+  {
+    "file": "still-water-desktop-1280.avif",
+    "width": 1280,
+    "height": 853,
+    "bytes": 212395,
+    "format": "AVIF"
+  },
+  {
+    "file": "still-water-desktop-1280.webp",
+    "width": 1280,
+    "height": 853,
+    "bytes": 278854,
+    "format": "WEBP"
+  },
+  {
+    "file": "still-water-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 2296457,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "still-water-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 115526,
+    "format": "AVIF"
+  },
+  {
+    "file": "still-water-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 138880,
+    "format": "WEBP"
+  },
+  {
+    "file": "still-water-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 202523,
+    "format": "AVIF"
+  },
+  {
+    "file": "still-water-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 265734,
+    "format": "WEBP"
+  },
+  {
+    "file": "automation-background-desktop-original.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 820061,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "automation-background-desktop-1280.avif",
+    "width": 1280,
+    "height": 720,
+    "bytes": 18730,
+    "format": "AVIF"
+  },
+  {
+    "file": "automation-background-desktop-1280.webp",
+    "width": 1280,
+    "height": 720,
+    "bytes": 38176,
+    "format": "WEBP"
+  },
+  {
+    "file": "automation-background-desktop-1672.avif",
+    "width": 1672,
+    "height": 941,
+    "bytes": 25769,
+    "format": "AVIF"
+  },
+  {
+    "file": "automation-background-desktop-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 55296,
+    "format": "WEBP"
+  },
+  {
+    "file": "automation-background-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 695568,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "automation-background-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 11573,
+    "format": "AVIF"
+  },
+  {
+    "file": "automation-background-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 21920,
+    "format": "WEBP"
+  },
+  {
+    "file": "automation-background-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 19193,
+    "format": "AVIF"
+  },
+  {
+    "file": "automation-background-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 39762,
+    "format": "WEBP"
+  },
+  {
+    "file": "work-page-hero-desktop-original.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2205518,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "work-page-hero-desktop-1280.avif",
+    "width": 1280,
+    "height": 720,
+    "bytes": 93604,
+    "format": "AVIF"
+  },
+  {
+    "file": "work-page-hero-desktop-1280.webp",
+    "width": 1280,
+    "height": 720,
+    "bytes": 153844,
+    "format": "WEBP"
+  },
+  {
+    "file": "work-page-hero-desktop-1672.avif",
+    "width": 1672,
+    "height": 941,
+    "bytes": 125571,
+    "format": "AVIF"
+  },
+  {
+    "file": "work-page-hero-desktop-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 222976,
+    "format": "WEBP"
+  },
+  {
+    "file": "work-page-hero-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 2384191,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "work-page-hero-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 83987,
+    "format": "AVIF"
+  },
+  {
+    "file": "work-page-hero-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 115998,
+    "format": "WEBP"
+  },
+  {
+    "file": "work-page-hero-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 132626,
+    "format": "AVIF"
+  },
+  {
+    "file": "work-page-hero-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 199552,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-product-macro-desktop-original.png",
+    "width": 2172,
+    "height": 724,
+    "bytes": 1874284,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "ai-creative-product-macro-desktop-1280.avif",
+    "width": 1280,
+    "height": 427,
+    "bytes": 72581,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-product-macro-desktop-1280.webp",
+    "width": 1280,
+    "height": 427,
+    "bytes": 106330,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-product-macro-desktop-1920.avif",
+    "width": 1920,
+    "height": 640,
+    "bytes": 114063,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-product-macro-desktop-1920.webp",
+    "width": 1920,
+    "height": 640,
+    "bytes": 179090,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-product-macro-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 1688801,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "ai-creative-product-macro-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 52994,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-product-macro-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 81634,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-product-macro-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 83664,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-product-macro-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 138842,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-burgundy-fashion-desktop-original.png",
+    "width": 2172,
+    "height": 724,
+    "bytes": 1754229,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "ai-creative-burgundy-fashion-desktop-1280.avif",
+    "width": 1280,
+    "height": 427,
+    "bytes": 39899,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-burgundy-fashion-desktop-1280.webp",
+    "width": 1280,
+    "height": 427,
+    "bytes": 67158,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-burgundy-fashion-desktop-1920.avif",
+    "width": 1920,
+    "height": 640,
+    "bytes": 67780,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-burgundy-fashion-desktop-1920.webp",
+    "width": 1920,
+    "height": 640,
+    "bytes": 116994,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-burgundy-fashion-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 1950771,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "ai-creative-burgundy-fashion-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 51219,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-burgundy-fashion-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 85272,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-burgundy-fashion-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 85694,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-burgundy-fashion-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 143714,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-short-film-desktop-original.png",
+    "width": 2172,
+    "height": 724,
+    "bytes": 1754229,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "ai-creative-short-film-desktop-1280.avif",
+    "width": 1280,
+    "height": 427,
+    "bytes": 39899,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-short-film-desktop-1280.webp",
+    "width": 1280,
+    "height": 427,
+    "bytes": 67158,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-short-film-desktop-1920.avif",
+    "width": 1920,
+    "height": 640,
+    "bytes": 67780,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-short-film-desktop-1920.webp",
+    "width": 1920,
+    "height": 640,
+    "bytes": 116994,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-short-film-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 1950771,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "ai-creative-short-film-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 51219,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-short-film-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 85272,
+    "format": "WEBP"
+  },
+  {
+    "file": "ai-creative-short-film-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 85694,
+    "format": "AVIF"
+  },
+  {
+    "file": "ai-creative-short-film-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 143714,
+    "format": "WEBP"
+  },
+  {
+    "file": "studio-page-hero-desktop-original.png",
+    "width": 1672,
+    "height": 941,
+    "bytes": 2201204,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "studio-page-hero-desktop-1280.avif",
+    "width": 1280,
+    "height": 720,
+    "bytes": 137820,
+    "format": "AVIF"
+  },
+  {
+    "file": "studio-page-hero-desktop-1280.webp",
+    "width": 1280,
+    "height": 720,
+    "bytes": 204726,
+    "format": "WEBP"
+  },
+  {
+    "file": "studio-page-hero-desktop-1672.avif",
+    "width": 1672,
+    "height": 941,
+    "bytes": 195303,
+    "format": "AVIF"
+  },
+  {
+    "file": "studio-page-hero-desktop-1672.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 318204,
+    "format": "WEBP"
+  },
+  {
+    "file": "studio-page-hero-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 2346613,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "studio-page-hero-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 108625,
+    "format": "AVIF"
+  },
+  {
+    "file": "studio-page-hero-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 155628,
+    "format": "WEBP"
+  },
+  {
+    "file": "studio-page-hero-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 180721,
+    "format": "AVIF"
+  },
+  {
+    "file": "studio-page-hero-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 271282,
+    "format": "WEBP"
+  },
+  {
+    "file": "studio-detail-texture-original.png",
+    "width": 750,
+    "height": 375,
+    "bytes": 470828,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "studio-detail-texture-750.avif",
+    "width": 750,
+    "height": 375,
+    "bytes": 20446,
+    "format": "AVIF"
+  },
+  {
+    "file": "studio-detail-texture-750.webp",
+    "width": 750,
+    "height": 375,
+    "bytes": 33812,
+    "format": "WEBP"
+  },
+  {
+    "file": "studio-detail-product-fidelity-original.png",
+    "width": 700,
+    "height": 350,
+    "bytes": 470567,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "studio-detail-product-fidelity-700.avif",
+    "width": 700,
+    "height": 350,
+    "bytes": 29786,
+    "format": "AVIF"
+  },
+  {
+    "file": "studio-detail-product-fidelity-700.webp",
+    "width": 700,
+    "height": 350,
+    "bytes": 46818,
+    "format": "WEBP"
+  },
+  {
+    "file": "studio-detail-consistency-original.png",
+    "width": 880,
+    "height": 440,
+    "bytes": 826900,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "studio-detail-consistency-880.avif",
+    "width": 880,
+    "height": 440,
+    "bytes": 62585,
+    "format": "AVIF"
+  },
+  {
+    "file": "studio-detail-consistency-880.webp",
+    "width": 880,
+    "height": 440,
+    "bytes": 91468,
+    "format": "WEBP"
+  },
+  {
+    "file": "contact-page-portrait-desktop-original.png",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 1701084,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "contact-page-portrait-desktop-1000.avif",
+    "width": 1000,
+    "height": 750,
+    "bytes": 48877,
+    "format": "AVIF"
+  },
+  {
+    "file": "contact-page-portrait-desktop-1000.webp",
+    "width": 1000,
+    "height": 750,
+    "bytes": 79652,
+    "format": "WEBP"
+  },
+  {
+    "file": "contact-page-portrait-desktop-1448.avif",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 80519,
+    "format": "AVIF"
+  },
+  {
+    "file": "contact-page-portrait-desktop-1448.webp",
+    "width": 1448,
+    "height": 1086,
+    "bytes": 149158,
+    "format": "WEBP"
+  },
+  {
+    "file": "contact-page-portrait-mobile-original.png",
+    "width": 1122,
+    "height": 1402,
+    "bytes": 1745786,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "contact-page-portrait-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 42299,
+    "format": "AVIF"
+  },
+  {
+    "file": "contact-page-portrait-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 70088,
+    "format": "WEBP"
+  },
+  {
+    "file": "contact-page-portrait-mobile-941.avif",
+    "width": 941,
+    "height": 1176,
+    "bytes": 71370,
+    "format": "AVIF"
+  },
+  {
+    "file": "contact-page-portrait-mobile-941.webp",
+    "width": 941,
+    "height": 1176,
+    "bytes": 122504,
+    "format": "WEBP"
+  },
+  {
+    "file": "footer/cosmic-footer-desktop.png",
+    "width": 3840,
+    "height": 1646,
+    "bytes": 7926794,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "footer/cosmic-footer-desktop-1280.avif",
+    "width": 1280,
+    "height": 549,
+    "bytes": 134357,
+    "format": "AVIF"
+  },
+  {
+    "file": "footer/cosmic-footer-desktop-1280.webp",
+    "width": 1280,
+    "height": 549,
+    "bytes": 150960,
+    "format": "WEBP"
+  },
+  {
+    "file": "footer/cosmic-footer-desktop-1920.avif",
+    "width": 1920,
+    "height": 823,
+    "bytes": 229519,
+    "format": "AVIF"
+  },
+  {
+    "file": "footer/cosmic-footer-desktop-1920.webp",
+    "width": 1920,
+    "height": 823,
+    "bytes": 277808,
+    "format": "WEBP"
+  },
+  {
+    "file": "footer/cosmic-footer-desktop-2560.avif",
+    "width": 2560,
+    "height": 1097,
+    "bytes": 308806,
+    "format": "AVIF"
+  },
+  {
+    "file": "footer/cosmic-footer-desktop-2560.webp",
+    "width": 2560,
+    "height": 1097,
+    "bytes": 391732,
+    "format": "WEBP"
+  },
+  {
+    "file": "footer/cosmic-footer-desktop-3840.avif",
+    "width": 3840,
+    "height": 1646,
+    "bytes": 437300,
+    "format": "AVIF"
+  },
+  {
+    "file": "footer/cosmic-footer-desktop-3840.webp",
+    "width": 3840,
+    "height": 1646,
+    "bytes": 612406,
+    "format": "WEBP"
+  },
+  {
+    "file": "footer/cosmic-footer-mobile.png",
+    "width": 2240,
+    "height": 2800,
+    "bytes": 9340608,
+    "format": "PNG fallback"
+  },
+  {
+    "file": "footer/cosmic-footer-mobile-640.avif",
+    "width": 640,
+    "height": 800,
+    "bytes": 144862,
+    "format": "AVIF"
+  },
+  {
+    "file": "footer/cosmic-footer-mobile-640.webp",
+    "width": 640,
+    "height": 800,
+    "bytes": 153138,
+    "format": "WEBP"
+  },
+  {
+    "file": "footer/cosmic-footer-mobile-960.avif",
+    "width": 960,
+    "height": 1200,
+    "bytes": 265472,
+    "format": "AVIF"
+  },
+  {
+    "file": "footer/cosmic-footer-mobile-960.webp",
+    "width": 960,
+    "height": 1200,
+    "bytes": 289470,
+    "format": "WEBP"
+  },
+  {
+    "file": "footer/cosmic-footer-mobile-1440.avif",
+    "width": 1440,
+    "height": 1800,
+    "bytes": 406495,
+    "format": "AVIF"
+  },
+  {
+    "file": "footer/cosmic-footer-mobile-1440.webp",
+    "width": 1440,
+    "height": 1800,
+    "bytes": 505584,
+    "format": "WEBP"
+  },
+  {
+    "file": "footer/cosmic-footer-mobile-2240.avif",
+    "width": 2240,
+    "height": 2800,
+    "bytes": 584380,
+    "format": "AVIF"
+  },
+  {
+    "file": "footer/cosmic-footer-mobile-2240.webp",
+    "width": 2240,
+    "height": 2800,
+    "bytes": 783326,
+    "format": "WEBP"
+  }
+]

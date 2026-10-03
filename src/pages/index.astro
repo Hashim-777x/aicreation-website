@@ -1,0 +1,283 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import ResponsiveImage from '@/components/ResponsiveImage.astro';
+import ActionLink from '@/components/ActionLink.astro';
+import WorkflowCanvas from '@/components/WorkflowCanvas.astro';
+import { projects, worlds } from '@/data/site';
+import { homeWorkflow } from '@/data/workflows';
+---
+
+<BaseLayout title="AIcreation.pro — AI made. Human directed." description="Human-directed AI images and films for products, fashion and spaces.">
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <ResponsiveImage desktop="hero-fashion-desktop" mobile="hero-fashion-mobile" widths={{ desktop: [1280, 1672], mobile: [640, 941] }} alt="Model in sculptural black silk seated within burgundy architecture" class="hero-media" loading="eager" fetchpriority="high" width={1672} height={941} />
+      <div class="hero-scrim"></div><Header theme="light" brandTheme="light" />
+      <div class="hero-copy">
+        <h1 id="hero-title"><span data-hero-left>AI MADE.</span><span data-hero-right>HUMAN<br />DIRECTED.</span></h1>
+        <div class="hero-intro"><p>Images and films shaped by human taste.</p><ActionLink href="#work" label="Explore the work" variant="outline-light" /></div>
+      </div>
+      <p class="hero-note">Greater ideas<br />A more human tomorrow.</p><p class="hero-label">AI creative studio</p>
+    </section>
+
+    <section id="creative" class="worlds section-light section-space--feature" aria-labelledby="worlds-title">
+      <header class="section-heading worlds-heading" data-reveal><h2 id="worlds-title">Made for your world.</h2><p>Products. People. Places. AI imagery and film, directed for real-world impact.</p></header>
+      <div class="world-grid" data-reveal>
+        {worlds.map((world) => <article class={`world-card ${world.className}`}><ResponsiveImage desktop={`${world.slug}-desktop`} mobile={`${world.slug}-mobile`} widths={world.slug === 'residence' ? { desktop: [960, 1600], mobile: [640, 941] } : { desktop: [720, 1200], mobile: [640, 941] }} alt={`${world.title} concept study`} /><div class="world-caption"><h3>{world.title}</h3><span>Concept study</span></div></article>)}
+      </div>
+    </section>
+
+    <section id="work" class="selected-work section-dark" aria-labelledby="work-title" data-projects>
+      <div class="work-sticky">
+        <header class="section-heading work-heading"><h2 id="work-title">Selected work.</h2><p>Three studies. Different worlds. A shared approach.</p><ActionLink href="/work" label="View all work" variant="text" /></header>
+        <div class="work-stage" data-project-stage>
+          <div class="project-list-viewport" data-project-list-region>
+            <ul class="project-list" data-project-track>
+              {projects.map((project, index) => <li><a href={project.href} class="project-row" data-project={project.slug} data-project-index={index} aria-current={index === 0 ? 'true' : undefined}><span>{project.number}</span><span><strong>{project.title}</strong><small>{project.category}</small></span></a></li>)}
+            </ul>
+          </div>
+          <div class="project-summary" data-project-summary aria-live="polite">
+            <div class="project-summary__heading">
+              <span data-active-number>{projects[0].number}</span>
+              <div><h3 data-active-title>{projects[0].title}</h3><p data-active-label>{projects[0].category}</p></div>
+            </div>
+            <p data-active-description>{projects[0].description}</p>
+            <ActionLink href={projects[0].href} label="View project" ariaLabel={`View ${projects[0].title} project`} variant="text" class="project-view-link" />
+          </div>
+          <div class="project-preview" aria-live="polite" aria-atomic="true">
+            {projects.map((project, index) => <ResponsiveImage desktop={`${project.preview}-desktop`} mobile={`${project.preview}-mobile`} widths={{ desktop: [800, 1280], mobile: [640, 941] }} alt={project.previewAlt} class={index === 0 ? 'is-active' : ''} loading="eager" fetchpriority="low" />)}
+          </div>
+          <div class="project-marquee" aria-hidden="true">
+            <div class="project-marquee__track">
+              <span data-marquee-copy>{`${projects[0].marqueeLabel.toUpperCase()}   `.repeat(4)}</span>
+              <span data-marquee-copy>{`${projects[0].marqueeLabel.toUpperCase()}   `.repeat(4)}</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-sequence">
+          {projects.map((project) => (
+            <article class="project-sequence__item" style={`--sequence-color:${project.accentColor}`}>
+              <div class="project-sequence__marquee" aria-hidden="true">{`${project.marqueeLabel.toUpperCase()}   `.repeat(3)}</div>
+              <div class="project-sequence__copy">
+                <div class="project-sequence__heading"><span>{project.number}</span><div><h3>{project.title}</h3><p>{project.category}</p></div></div>
+                <p class="project-sequence__description">{project.description}</p>
+                <ActionLink href={project.href} label="View project" ariaLabel={`View ${project.title} project`} variant="text" />
+              </div>
+              <ResponsiveImage desktop={`${project.preview}-desktop`} mobile={`${project.preview}-mobile`} widths={{ desktop: [800, 1280], mobile: [640, 941] }} alt={project.previewAlt} loading="eager" fetchpriority="low" />
+            </article>
+          ))}
+        </div>
+        <script type="application/json" data-project-data set:html={JSON.stringify(projects)}></script>
+      </div>
+    </section>
+
+    <section id="comparison" class="comparison section-light section-space--compact" aria-labelledby="comparison-title">
+      <div class="comparison-copy" data-reveal><p class="eyebrow">Illustrative concept comparison</p><h2 id="comparison-title">The direction<br />makes the difference.</h2></div>
+      <figure><ResponsiveImage desktop="perfume-source-desktop" mobile="perfume-source-mobile" widths={{ desktop: [640, 1000], mobile: [640, 941] }} alt="Clean perfume bottle source concept" /><figcaption>Source</figcaption></figure>
+      <figure><ResponsiveImage desktop="perfume-finished-desktop" mobile="perfume-finished-mobile" widths={{ desktop: [640, 1000], mobile: [640, 941] }} alt="Human-directed amber perfume campaign concept" /><figcaption>Finished (human directed)</figcaption></figure>
+      <div class="comparison-note"><p>Same starting point.<br />A more considered result.<br />Human direction turns<br />good into exceptional.</p><small>Concept preview</small></div>
+    </section>
+
+    <section id="agents" class="agents section-space--feature" aria-labelledby="agents-title">
+      <div class="agents-copy" data-reveal>
+        <p class="concept-label">AI workflows</p>
+        <h2 id="agents-title">make your<br />ai agent</h2>
+        <p>Connect your channels. Shape the workflow. Keep a human in control.</p>
+        <ActionLink href="/agents" label="PLAN YOUR AGENT" variant="copper" class="cta--utility" />
+      </div>
+      <WorkflowCanvas workflow={homeWorkflow} class="agents-workflow" />
+    </section>
+
+    <section id="studio" class="studio section-space--compact" aria-labelledby="studio-title" data-reveal><h2 id="studio-title">Small studio.<br />Direct collaboration.</h2><div><h3>Hashim</h3><p>Engineering &amp; systems</p></div><div><h3>Altaf</h3><p>Creative &amp; production</p></div><ActionLink href="/studio" label="Meet the studio" variant="primary" /></section>
+  </main><Footer />
+</BaseLayout>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    const headline = [...document.querySelectorAll<HTMLElement>('[data-hero-left], [data-hero-right]')];
+    const hero = document.querySelector<HTMLElement>('.hero');
+    let frame = 0;
+    const renderHero = () => {
+      const heroHeight = Math.max(hero?.offsetHeight ?? window.innerHeight, 1);
+      const progress = Math.max(0, Math.min(1, window.scrollY / heroHeight));
+      const offset = -Math.min(window.scrollY * .14, 88);
+      const inward = Math.max(48, Math.min(110, window.innerWidth * .065));
+      const outward = Math.max(16, Math.min(34, window.innerWidth * .02));
+      const spread = inward - progress * (inward + outward);
+      headline.forEach((line) => line.style.setProperty('--hero-parallax', `${offset.toFixed(2)}px`));
+      headline[0]?.style.setProperty('--hero-scroll-x', `${spread.toFixed(2)}px`);
+      headline[1]?.style.setProperty('--hero-scroll-x', `${(-spread).toFixed(2)}px`);
+      frame = 0;
+    };
+    const updateHero = () => {
+      if (!frame) frame = requestAnimationFrame(renderHero);
+    };
+    window.addEventListener('scroll', updateHero, { passive: true }); window.addEventListener('resize', updateHero, { passive: true }); updateHero();
+    hero?.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'touch') return;
+      const bounds = hero.getBoundingClientRect();
+      const normalized = ((event.clientX - bounds.left) / Math.max(bounds.width, 1) - .5) * 2;
+      headline[0]?.style.setProperty('--hero-pointer-x', `${normalized * -24}px`);
+      headline[1]?.style.setProperty('--hero-pointer-x', `${normalized * 24}px`);
+    }, { passive: true });
+    hero?.addEventListener('pointerleave', () => headline.forEach((line) => line.style.setProperty('--hero-pointer-x', '0px')));
+  }
+  interface ProjectState {
+    number: string; title: string; slug: string; accentColor: string; preview: string;
+    previewAlt: string; description: string; href: string; category: string; marqueeLabel: string;
+  }
+  type InteractionSource = 'scroll' | 'pointer' | 'keyboard';
+  const section = document.querySelector<HTMLElement>('[data-projects]');
+  const sticky = section?.querySelector<HTMLElement>('.work-sticky');
+  const stage = section?.querySelector<HTMLElement>('[data-project-stage]');
+  const rows = [...(section?.querySelectorAll<HTMLAnchorElement>('[data-project]') ?? [])];
+  const previews = [...(section?.querySelectorAll<HTMLElement>('.project-preview picture') ?? [])];
+  const listRegion = section?.querySelector<HTMLElement>('[data-project-list-region]');
+  const marqueeCopies = [...(section?.querySelectorAll<HTMLElement>('[data-marquee-copy]') ?? [])];
+  const summary = section?.querySelector<HTMLElement>('[data-project-summary]');
+  const activeNumber = section?.querySelector<HTMLElement>('[data-active-number]');
+  const activeTitle = section?.querySelector<HTMLElement>('[data-active-title]');
+  const activeLabel = section?.querySelector<HTMLElement>('[data-active-label]');
+  const activeDescription = section?.querySelector<HTMLElement>('[data-active-description]');
+  const projectLink = section?.querySelector<HTMLAnchorElement>('.project-view-link');
+  const dataNode = section?.querySelector<HTMLScriptElement>('[data-project-data]');
+  const projectData: ProjectState[] = dataNode?.textContent ? JSON.parse(dataNode.textContent) : [];
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const desktopLayout = window.matchMedia('(min-width: 900px)');
+  let activeProject = 0;
+  let interactionSource: InteractionSource = 'scroll';
+  let pointerInside = false;
+  let pointerProject = -1;
+  let pointerFrame = 0;
+  let pendingPointerY = 0;
+  let pointerSuspended = false;
+  let lastPointer = { x: 0, y: 0 };
+  let pointerResumeAnchor = { x: 0, y: 0 };
+  let summaryAnimation: Animation | null = null;
+  let scrollFrame = 0;
+  let lastScrollY = window.scrollY;
+
+  const clamp = (value: number, minimum: number, maximum: number) => Math.min(maximum, Math.max(minimum, value));
+  const indexFromScroll = () => {
+    if (!section || !sticky || !projectData.length) return 0;
+    const rect = section.getBoundingClientRect();
+    const stickyTop = Number.parseFloat(getComputedStyle(sticky).top) || 0;
+    const scrollRange = Math.max(section.offsetHeight - sticky.offsetHeight, 1);
+    const progress = clamp((stickyTop - rect.top) / scrollRange, 0, .9999);
+    return Math.min(projectData.length - 1, Math.floor(progress * projectData.length));
+  };
+
+  const setActiveProject = (nextIndex: number, source: InteractionSource) => {
+    const index = clamp(nextIndex, 0, projectData.length - 1);
+    const project = projectData[index];
+    if (!project || !section) return;
+    interactionSource = source;
+    const changed = index !== activeProject;
+    activeProject = index;
+    rows.forEach((row, rowIndex) => {
+      if (rowIndex === index) row.setAttribute('aria-current', 'true');
+      else row.removeAttribute('aria-current');
+    });
+    previews.forEach((preview, previewIndex) => {
+      const isActive = previewIndex === index;
+      preview.classList.toggle('is-active', isActive);
+      preview.setAttribute('aria-hidden', String(!isActive));
+    });
+    section.style.setProperty('--project-color', project.accentColor);
+    marqueeCopies.forEach((copy) => copy.textContent = `${project.marqueeLabel.toUpperCase()}   `.repeat(4));
+    if (activeNumber) activeNumber.textContent = project.number;
+    if (activeTitle) activeTitle.textContent = project.title;
+    if (activeLabel) activeLabel.textContent = project.category;
+    if (activeDescription) activeDescription.textContent = project.description;
+    if (projectLink) { projectLink.href = project.href; projectLink.setAttribute('aria-label', `View ${project.title} project`); }
+    if (changed && summary && !reduceMotion) {
+      summaryAnimation?.cancel();
+      summaryAnimation = summary.animate(
+        [{ opacity: .35, transform: 'translate3d(0, 10px, 0)' }, { opacity: 1, transform: 'translate3d(0, 0, 0)' }],
+        { duration: 190, easing: 'cubic-bezier(.22,1,.36,1)' },
+      );
+    }
+  };
+
+  const activateFromPointer = (clientY: number) => {
+    if (!stage || !projectData.length) return;
+    const rect = stage.getBoundingClientRect();
+    const localY = clamp(clientY - rect.top, 0, rect.height - 1);
+    const progress = localY / Math.max(rect.height, 1);
+    const target = Math.min(projectData.length - 1, Math.floor(progress * projectData.length));
+    const hysteresis = .035;
+    if (pointerProject < 0) pointerProject = target;
+    else if (target > pointerProject && progress >= (pointerProject + 1) / projectData.length + hysteresis) pointerProject = target;
+    else if (target < pointerProject && progress <= pointerProject / projectData.length - hysteresis) pointerProject = target;
+    setActiveProject(pointerProject, 'pointer');
+  };
+
+  stage?.addEventListener('pointerenter', (event) => {
+    if (!finePointer.matches || !desktopLayout.matches || event.pointerType === 'touch') return;
+    pointerInside = true;
+    lastPointer = { x: event.clientX, y: event.clientY };
+    if (!pointerSuspended) { pointerProject = -1; activateFromPointer(event.clientY); }
+  });
+
+  stage?.addEventListener('pointermove', (event) => {
+    if (!finePointer.matches || !desktopLayout.matches || event.pointerType === 'touch') return;
+    const nextPointer = { x: event.clientX, y: event.clientY };
+    if (pointerSuspended) {
+      const distance = Math.hypot(nextPointer.x - pointerResumeAnchor.x, nextPointer.y - pointerResumeAnchor.y);
+      if (distance < 6) { lastPointer = nextPointer; return; }
+      pointerSuspended = false;
+      pointerProject = -1;
+    }
+    lastPointer = nextPointer;
+    pendingPointerY = event.clientY;
+    if (pointerFrame) return;
+    pointerFrame = requestAnimationFrame(() => {
+      pointerFrame = 0;
+      activateFromPointer(pendingPointerY);
+    });
+  }, { passive: true });
+
+  stage?.addEventListener('pointerleave', () => {
+    pointerInside = false;
+    pointerProject = -1;
+    pointerSuspended = false;
+  });
+
+  listRegion?.addEventListener('focusin', (event) => {
+    const row = (event.target as HTMLElement).closest<HTMLAnchorElement>('[data-project]');
+    if (!row) return;
+    setActiveProject(Number(row.dataset.projectIndex ?? 0), 'keyboard');
+  });
+  listRegion?.addEventListener('focusout', () => requestAnimationFrame(() => {
+    if (listRegion.contains(document.activeElement)) return;
+    interactionSource = pointerInside && !pointerSuspended ? 'pointer' : 'scroll';
+  }));
+
+  const updateFromScroll = () => {
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = 0;
+      const delta = Math.abs(window.scrollY - lastScrollY);
+      lastScrollY = window.scrollY;
+      if (delta > 0 && desktopLayout.matches) {
+        if (interactionSource === 'keyboard' && listRegion?.contains(document.activeElement)) return;
+        pointerSuspended = pointerInside;
+        pointerResumeAnchor = { ...lastPointer };
+        setActiveProject(indexFromScroll(), 'scroll');
+      }
+    });
+  };
+
+  const refreshWork = () => {
+    if (!desktopLayout.matches) return;
+    if (interactionSource === 'keyboard' && listRegion?.contains(document.activeElement)) return;
+    pointerProject = -1;
+    setActiveProject(indexFromScroll(), 'scroll');
+  };
+  window.addEventListener('scroll', updateFromScroll, { passive: true });
+  window.addEventListener('resize', refreshWork, { passive: true });
+  document.fonts?.ready.then(refreshWork);
+  setActiveProject(desktopLayout.matches ? indexFromScroll() : 0, 'scroll');
+</script>

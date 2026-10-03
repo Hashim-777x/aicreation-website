@@ -1,0 +1,13 @@
+---
+import type { WorkflowNodeData } from '@/data/workflows';
+type PortSide = 'left' | 'right' | 'top' | 'bottom';
+interface Props { node: WorkflowNodeData; selected?: boolean; ports?: PortSide[] }
+const { node, selected = false, ports = [] } = Astro.props;
+---
+<li class:list={['workflow-node-wrap', `workflow-node-wrap--${node.kind}`]} style={`--workflow-area:${node.area}`} data-node-id={node.id}>
+  <button class:list={['workflow-node', `workflow-node--${node.kind}`, node.kind === 'input' && (node.step === 'Input' || node.step === 'Context') && 'workflow-node--context']} type="button" data-workflow-node={node.id} data-node-copy={node.copy} aria-pressed={selected ? 'true' : 'false'}>
+    <span class="workflow-node__step workflow-node__index">{node.step}</span>
+    <span class="workflow-node__body workflow-node__content"><strong class="workflow-node__title">{node.title}</strong><small class="workflow-node__description">{node.copy}</small></span>
+    {ports.map((side) => <span class:list={['workflow-port', `workflow-port--${side}`]} data-port={side} aria-hidden="true"></span>)}
+  </button>
+</li>

@@ -1,0 +1,82 @@
+---
+import Brand from './Brand.astro';
+import ActionLink from './ActionLink.astro';
+import { navItems } from '@/data/site';
+---
+<footer id="contact" class="site-footer" data-cosmic-footer>
+  <picture class="footer-media">
+    <source media="(max-width: 767px)" type="image/avif" srcset="/media/footer/cosmic-footer-mobile-640.avif 640w, /media/footer/cosmic-footer-mobile-960.avif 960w, /media/footer/cosmic-footer-mobile-1440.avif 1440w, /media/footer/cosmic-footer-mobile-2240.avif 2240w" />
+    <source media="(max-width: 767px)" type="image/webp" srcset="/media/footer/cosmic-footer-mobile-640.webp 640w, /media/footer/cosmic-footer-mobile-960.webp 960w, /media/footer/cosmic-footer-mobile-1440.webp 1440w, /media/footer/cosmic-footer-mobile-2240.webp 2240w" />
+    <source media="(min-width: 768px)" type="image/avif" srcset="/media/footer/cosmic-footer-desktop-1280.avif 1280w, /media/footer/cosmic-footer-desktop-1920.avif 1920w, /media/footer/cosmic-footer-desktop-2560.avif 2560w, /media/footer/cosmic-footer-desktop-3840.avif 3840w" />
+    <source media="(min-width: 768px)" type="image/webp" srcset="/media/footer/cosmic-footer-desktop-1280.webp 1280w, /media/footer/cosmic-footer-desktop-1920.webp 1920w, /media/footer/cosmic-footer-desktop-2560.webp 2560w, /media/footer/cosmic-footer-desktop-3840.webp 3840w" />
+    <source media="(max-width: 767px)" type="image/png" srcset="/media/footer/cosmic-footer-mobile.png" />
+    <source media="(min-width: 768px)" type="image/png" srcset="/media/footer/cosmic-footer-desktop.png" />
+    <img src="/media/footer/cosmic-footer-desktop.png" alt="A lone figure in a grass field beneath a detailed Earth-like planet and deep star field" loading="lazy" decoding="async" width="3840" height="1646" />
+  </picture>
+  <div class="footer-overlay"></div>
+  <div class="footer-content">
+    <div class="footer-message">
+      <a class="brand" href="/" aria-label="AIcreation.pro home"><Brand variant="white" /></a>
+      <h2>Your next chapter<br />deserves imagination.</h2>
+      <p class="footer-line">Imagination builds brighter worlds.</p>
+    </div>
+    <form class="contact-form" data-contact-form novalidate>
+      <h3>Start a conversation.</h3>
+      <label><span>Name</span><input name="name" autocomplete="name" placeholder="Your name" required /></label>
+      <label><span>Email</span><input name="email" type="email" autocomplete="email" placeholder="you@company.com" required /></label>
+      <label><span>Project brief</span><textarea name="brief" rows="3" placeholder="Tell us what you want to create" required></textarea></label>
+      <ActionLink label="Send enquiry" variant="inverse" type="submit" class="cta--compact" />
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a href="mailto:hello@aicreation.pro">hello@aicreation.pro</a>
+    </nav>
+  </div>
+  <p class="footer-signoff"><Brand variant="white" symbolOnly={true} class="brand-signature-mark" />A more human tomorrow.</p>
+</footer>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const status = form.querySelector<HTMLElement>('.form-status');
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const label = button?.querySelector<HTMLElement>('.cta__label');
+    if (!form.checkValidity()) {
+      form.dataset.state = 'error';
+      form.reportValidity();
+      if (status) status.textContent = 'Please complete each field.';
+      return;
+    }
+    form.dataset.state = 'loading';
+    if (button) { button.disabled = true; button.setAttribute('aria-busy', 'true'); }
+    if (label) label.textContent = 'Sending…';
+    if (status) status.textContent = 'Preparing your enquiry…';
+    window.setTimeout(() => {
+      form.dataset.state = 'success';
+      if (button) { button.disabled = false; button.removeAttribute('aria-busy'); }
+      if (label) label.textContent = 'Send enquiry';
+      if (status) status.textContent = 'Your enquiry is ready. Until delivery is connected, email hello@aicreation.pro.';
+    }, 450);
+  });
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const footers = [...document.querySelectorAll<HTMLElement>('[data-cosmic-footer]')];
+    let footerFrame = 0;
+    const renderFooters = () => {
+      const viewportHeight = Math.max(window.innerHeight, 1);
+      footers.forEach((footer) => {
+        const bounds = footer.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, (viewportHeight - bounds.top) / (viewportHeight + bounds.height)));
+        footer.style.setProperty('--footer-shift', `${((progress - .5) * 24).toFixed(2)}px`);
+        footer.style.setProperty('--footer-scale', `${(1.02 - progress * .012).toFixed(4)}`);
+      });
+      footerFrame = 0;
+    };
+    const updateFooters = () => { if (!footerFrame) footerFrame = requestAnimationFrame(renderFooters); };
+    window.addEventListener('scroll', updateFooters, { passive: true });
+    window.addEventListener('resize', updateFooters, { passive: true });
+    updateFooters();
+  }
+</script>

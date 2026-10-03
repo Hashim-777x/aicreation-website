@@ -1,0 +1,51 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Footer from '@/components/Footer.astro';
+import WorkflowCanvas from '@/components/WorkflowCanvas.astro';
+import WorkflowStory from '@/components/WorkflowStory.astro';
+import ActionLink from '@/components/ActionLink.astro';
+import { socialEnquiryWorkflow, propertyLeadWorkflow, contentApprovalWorkflow } from '@/data/workflows';
+---
+<BaseLayout title="AI Agents — AIcreation.pro" description="Focused AI workflows with human review and control.">
+  <main id="main-content">
+    <PageHero theme="dark" headerTheme="light" brandTheme="light" title="make your ai agent" intro="Connect your channels. Shape the workflow. Keep a human in control." desktop="automation-background-desktop" mobile="automation-background-mobile" cta={{label:'PLAN YOUR AGENT',href:'/contact',variant:'copper',class:'cta--utility'}} />
+
+    <section class="agents-intro editorial-section section-space--standard" aria-labelledby="workflow-stories-title">
+      <p class="concept-label">Workflow concepts</p>
+      <h2 id="workflow-stories-title" data-reveal>Start with one<br />useful process.</h2>
+      <p class="lead">These examples show how a focused assistant could support repetitive work while a person keeps the final decision.</p>
+    </section>
+
+    <section class="agents-demo-section section-space--feature" aria-label="Social enquiry workflow concept">
+      <WorkflowCanvas workflow={socialEnquiryWorkflow} class="agents-demo-canvas" />
+    </section>
+
+    <section class="workflow-story-section section-space--standard" aria-label="Additional workflow concepts">
+      <WorkflowStory workflow={propertyLeadWorkflow} />
+      <WorkflowStory workflow={contentApprovalWorkflow} tone="dark" />
+    </section>
+
+    <section class="workflow-detail-section section-space--feature" aria-labelledby="detail-title">
+      <div class="workflow-detail-copy">
+        <p class="concept-label">Illustrative system detail</p>
+        <h2 id="detail-title">Context in.<br />Judgement stays.</h2>
+        <p>A closer view of the ports, approved context and review checkpoint that shape a controlled workflow.</p>
+        <ActionLink href="/contact" label="Discuss a workflow" variant="copper" />
+      </div>
+      <div class="workflow-detail-poster" role="img" aria-label="Concept diagram showing approved context entering an AI draft before human review">
+        <svg viewBox="0 0 760 520" aria-hidden="true">
+          <path d="M126 125 C260 125 225 258 356 258"></path>
+          <path d="M126 392 C260 392 225 258 356 258"></path>
+          <path d="M454 258 C548 258 526 258 620 258"></path>
+        </svg>
+        <div class="detail-node detail-node--one"><i></i><span>Approved knowledge</span><small>Offers · tone · policies</small></div>
+        <div class="detail-node detail-node--two"><i></i><span>Live conversation</span><small>Message · channel · context</small></div>
+        <div class="detail-node detail-node--core"><i></i><span>Draft response</span><small>Prepared from allowed inputs</small></div>
+        <div class="detail-node detail-node--review"><i></i><span>Human review</span><small>Approve · revise · redirect</small></div>
+      </div>
+    </section>
+
+    <section class="editorial-section agents-process section-space--compact"><p class="concept-label">Engagement process</p><h2 data-reveal>Built around your process.</h2><div class="process-line"><div><strong>Map</strong><p>Understand goals and channels.</p></div><div><strong>Prototype</strong><p>Build a focused concept.</p></div><div><strong>Test</strong><p>Refine through representative conversations.</p></div><div><strong>Validate</strong><p>Prepare for launch after review.</p></div></div></section>
+  </main><Footer />
+</BaseLayout>
