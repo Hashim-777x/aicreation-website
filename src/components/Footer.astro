@@ -1,7 +1,19 @@
 ---
 import Brand from './Brand.astro';
+
 import ActionLink from './ActionLink.astro';
-import { navItems } from '@/data/site';
+const route = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isContact = route === '/contact';
+const messages: Record<string, { lines: string[]; note: string; copy: string; action: string }> = {
+  '/': { lines: ['Your next chapter', 'deserves imagination.'], note: 'AI made. Human directed.', copy: 'A clear idea. A considered direction. Tell us what your brand needs next.', action: 'Discuss your project' },
+  '/work': { lines: ['Your brand.', 'Our next creative brief.'], note: 'Every detail earns its place.', copy: 'Bring your product, audience and ambition. We will shape the visual direction around them.', action: 'Discuss your campaign' },
+  '/ai-creative': { lines: ['Made with AI.', 'Refined for your brand.'], note: 'Human judgement at every stage.', copy: 'From product detail to the final frame, we keep your brief at the centre of the creative process.', action: 'Discuss your creative brief' },
+  '/agents': { lines: ['Build the workflow.', 'Keep the judgement.'], note: 'Your process. Your approval.', copy: 'Start with one useful task. Define the inputs, review points and boundaries before building.', action: 'Discuss your workflow' },
+  '/studio': { lines: ['A small studio.', 'Close to your vision.'], note: 'Direct collaboration. Considered work.', copy: 'Work directly with the people shaping your project, from the first conversation to the final details.', action: 'Meet us through your brief' },
+  '/contact': { lines: ['Good work starts', 'with a conversation.'], note: 'Your brief sets the direction.', copy: '', action: '' },
+};
+const message = messages[route] ?? messages['/'];
+
 ---
 <footer id="contact" class="site-footer" data-cosmic-footer>
   <picture class="footer-media">
@@ -14,53 +26,27 @@ import { navItems } from '@/data/site';
     <img src="/media/footer/cosmic-footer-desktop.png" alt="A lone figure in a grass field beneath a detailed Earth-like planet and deep star field" loading="lazy" decoding="async" width="3840" height="1646" />
   </picture>
   <div class="footer-overlay"></div>
-  <div class="footer-content">
+  <div class:list={["footer-content", {"footer-content--contact": isContact}]}>
     <div class="footer-message">
       <a class="brand" href="/" aria-label="AIcreation.pro home"><Brand variant="white" /></a>
-      <h2>Your next chapter<br />deserves imagination.</h2>
-      <p class="footer-line">Imagination builds brighter worlds.</p>
+      <h2>{message.lines.map((line, index) => <>{index > 0 && <br />}{line}</>)}</h2>
+      <p class="footer-line">{message.note}</p>
     </div>
-    <form class="contact-form" data-contact-form novalidate>
-      <h3>Start a conversation.</h3>
-      <label><span>Name</span><input name="name" autocomplete="name" placeholder="Your name" required /></label>
-      <label><span>Email</span><input name="email" type="email" autocomplete="email" placeholder="you@company.com" required /></label>
-      <label><span>Project brief</span><textarea name="brief" rows="3" placeholder="Tell us what you want to create" required></textarea></label>
-      <ActionLink label="Send enquiry" variant="inverse" type="submit" class="cta--compact" />
-      <p class="form-status" role="status" aria-live="polite"></p>
-    </form>
-    <nav class="footer-nav" aria-label="Footer navigation">
-      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
-      <a href="mailto:hello@aicreation.pro">hello@aicreation.pro</a>
-    </nav>
+    {!isContact && <div class="footer-invitation">
+      <p>{message.copy}</p>
+      <ActionLink href="/contact#brief" label={message.action} variant="inverse" />
+    </div>}
+  </div>
+  <div class="footer-meta">
+    <div class="footer-legal-row">
+      <p>© {new Date().getFullYear()} AIcreation.pro</p>
+      <nav aria-label="Legal navigation"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Use</a></nav>
+    </div>
   </div>
   <p class="footer-signoff"><Brand variant="white" symbolOnly={true} class="brand-signature-mark" />A more human tomorrow.</p>
 </footer>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
-  form?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const status = form.querySelector<HTMLElement>('.form-status');
-    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
-    const label = button?.querySelector<HTMLElement>('.cta__label');
-    if (!form.checkValidity()) {
-      form.dataset.state = 'error';
-      form.reportValidity();
-      if (status) status.textContent = 'Please complete each field.';
-      return;
-    }
-    form.dataset.state = 'loading';
-    if (button) { button.disabled = true; button.setAttribute('aria-busy', 'true'); }
-    if (label) label.textContent = 'Sending…';
-    if (status) status.textContent = 'Preparing your enquiry…';
-    window.setTimeout(() => {
-      form.dataset.state = 'success';
-      if (button) { button.disabled = false; button.removeAttribute('aria-busy'); }
-      if (label) label.textContent = 'Send enquiry';
-      if (status) status.textContent = 'Your enquiry is ready. Until delivery is connected, email hello@aicreation.pro.';
-    }, 450);
-  });
-
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const footers = [...document.querySelectorAll<HTMLElement>('[data-cosmic-footer]')];
     let footerFrame = 0;

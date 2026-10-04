@@ -1,0 +1,12 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+interface Props {title: string; description: string}
+const {title, description} = Astro.props;
+---
+<BaseLayout title={`${title} — AIcreation.pro`} description={description}>
+  <Header theme="dark" brandTheme="dark"/>
+  <main class="legal-content"><h1>{title}</h1><slot/></main>
+  <Footer/>
+</BaseLayout>

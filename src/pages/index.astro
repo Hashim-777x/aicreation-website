@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import ResponsiveImage from '@/components/ResponsiveImage.astro';
+import LoopMedia from '@/components/LoopMedia.astro';
 import ActionLink from '@/components/ActionLink.astro';
 import WorkflowCanvas from '@/components/WorkflowCanvas.astro';
 import { projects, worlds } from '@/data/site';
@@ -24,13 +25,14 @@ import { homeWorkflow } from '@/data/workflows';
     <section id="creative" class="worlds section-light section-space--feature" aria-labelledby="worlds-title">
       <header class="section-heading worlds-heading" data-reveal><h2 id="worlds-title">Made for your world.</h2><p>Products. People. Places. AI imagery and film, directed for real-world impact.</p></header>
       <div class="world-grid" data-reveal>
-        {worlds.map((world) => <article class={`world-card ${world.className}`}><ResponsiveImage desktop={`${world.slug}-desktop`} mobile={`${world.slug}-mobile`} widths={world.slug === 'residence' ? { desktop: [960, 1600], mobile: [640, 941] } : { desktop: [720, 1200], mobile: [640, 941] }} alt={`${world.title} concept study`} /><div class="world-caption"><h3>{world.title}</h3><span>Concept study</span></div></article>)}
+        {worlds.map((world) => <article class={`world-card ${world.className}`}><LoopMedia videoKey={world.slug} desktop={`${world.slug}-desktop`} mobile={`${world.slug}-mobile`} widths={world.slug === 'residence' ? { desktop: [960, 1600], mobile: [640, 941] } : { desktop: [720, 1200], mobile: [640, 941] }} alt={`${world.title} concept study`} /><div class="world-caption"><h3>{world.title}</h3><span>Concept study</span></div></article>)}
       </div>
     </section>
 
     <section id="work" class="selected-work section-dark" aria-labelledby="work-title" data-projects>
       <div class="work-sticky">
         <header class="section-heading work-heading"><h2 id="work-title">Selected work.</h2><p>Three studies. Different worlds. A shared approach.</p><ActionLink href="/work" label="View all work" variant="text" /></header>
+        <noscript><style>#work{height:auto}#work .work-sticky{position:relative;top:auto;height:auto;min-height:0}#work .work-stage{display:none}#work .project-sequence{display:block;margin-top:4rem}</style></noscript>
         <div class="work-stage" data-project-stage>
           <div class="project-list-viewport" data-project-list-region>
             <ul class="project-list" data-project-track>
@@ -73,7 +75,7 @@ import { homeWorkflow } from '@/data/workflows';
     </section>
 
     <section id="comparison" class="comparison section-light section-space--compact" aria-labelledby="comparison-title">
-      <div class="comparison-copy" data-reveal><p class="eyebrow">Illustrative concept comparison</p><h2 id="comparison-title">The direction<br />makes the difference.</h2></div>
+      <div class="comparison-copy" data-reveal><h2 id="comparison-title">The direction<br />makes the difference.</h2></div>
       <figure><ResponsiveImage desktop="perfume-source-desktop" mobile="perfume-source-mobile" widths={{ desktop: [640, 1000], mobile: [640, 941] }} alt="Clean perfume bottle source concept" /><figcaption>Source</figcaption></figure>
       <figure><ResponsiveImage desktop="perfume-finished-desktop" mobile="perfume-finished-mobile" widths={{ desktop: [640, 1000], mobile: [640, 941] }} alt="Human-directed amber perfume campaign concept" /><figcaption>Finished (human directed)</figcaption></figure>
       <div class="comparison-note"><p>Same starting point.<br />A more considered result.<br />Human direction turns<br />good into exceptional.</p><small>Concept preview</small></div>
@@ -100,6 +102,7 @@ import { homeWorkflow } from '@/data/workflows';
     const hero = document.querySelector<HTMLElement>('.hero');
     let frame = 0;
     const renderHero = () => {
+      if (window.innerWidth < 900) { frame = 0; return; }
       const heroHeight = Math.max(hero?.offsetHeight ?? window.innerHeight, 1);
       const progress = Math.max(0, Math.min(1, window.scrollY / heroHeight));
       const offset = -Math.min(window.scrollY * .14, 88);
@@ -116,7 +119,7 @@ import { homeWorkflow } from '@/data/workflows';
     };
     window.addEventListener('scroll', updateHero, { passive: true }); window.addEventListener('resize', updateHero, { passive: true }); updateHero();
     hero?.addEventListener('pointermove', (event) => {
-      if (event.pointerType === 'touch') return;
+      if (event.pointerType === 'touch' || window.innerWidth < 900) return;
       const bounds = hero.getBoundingClientRect();
       const normalized = ((event.clientX - bounds.left) / Math.max(bounds.width, 1) - .5) * 2;
       headline[0]?.style.setProperty('--hero-pointer-x', `${normalized * -24}px`);
@@ -235,11 +238,13 @@ import { homeWorkflow } from '@/data/workflows';
     if (pointerFrame) return;
     pointerFrame = requestAnimationFrame(() => {
       pointerFrame = 0;
-      activateFromPointer(pendingPointerY);
+      if (pointerInside && !pointerSuspended) activateFromPointer(pendingPointerY);
     });
   }, { passive: true });
 
   stage?.addEventListener('pointerleave', () => {
+    if (pointerFrame) cancelAnimationFrame(pointerFrame);
+    pointerFrame = 0;
     pointerInside = false;
     pointerProject = -1;
     pointerSuspended = false;
@@ -263,7 +268,9 @@ import { homeWorkflow } from '@/data/workflows';
       lastScrollY = window.scrollY;
       if (delta > 0 && desktopLayout.matches) {
         if (interactionSource === 'keyboard' && listRegion?.contains(document.activeElement)) return;
-        pointerSuspended = pointerInside;
+        if (pointerFrame) cancelAnimationFrame(pointerFrame);
+        pointerFrame = 0;
+        pointerSuspended = true;
         pointerResumeAnchor = { ...lastPointer };
         setActiveProject(indexFromScroll(), 'scroll');
       }
@@ -281,3 +288,4 @@ import { homeWorkflow } from '@/data/workflows';
   document.fonts?.ready.then(refreshWork);
   setActiveProject(desktopLayout.matches ? indexFromScroll() : 0, 'scroll');
 </script>
+

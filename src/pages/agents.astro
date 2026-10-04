@@ -9,7 +9,7 @@ import { socialEnquiryWorkflow, propertyLeadWorkflow, contentApprovalWorkflow } 
 ---
 <BaseLayout title="AI Agents — AIcreation.pro" description="Focused AI workflows with human review and control.">
   <main id="main-content">
-    <PageHero theme="dark" headerTheme="light" brandTheme="light" title="make your ai agent" intro="Connect your channels. Shape the workflow. Keep a human in control." desktop="automation-background-desktop" mobile="automation-background-mobile" cta={{label:'PLAN YOUR AGENT',href:'/contact',variant:'copper',class:'cta--utility'}} />
+    <PageHero theme="dark" headerTheme="light" brandTheme="light" title="Make your Ai Agents" intro="Connect your channels. Shape the workflow. Keep a human in control." desktop="automation-background-desktop" mobile="automation-background-mobile" cta={{label:'PLAN YOUR AGENT',href:'/contact',variant:'copper',class:'cta--utility'}} />
 
     <section class="agents-intro editorial-section section-space--standard" aria-labelledby="workflow-stories-title">
       <p class="concept-label">Workflow concepts</p>
@@ -35,9 +35,9 @@ import { socialEnquiryWorkflow, propertyLeadWorkflow, contentApprovalWorkflow } 
       </div>
       <div class="workflow-detail-poster" role="img" aria-label="Concept diagram showing approved context entering an AI draft before human review">
         <svg viewBox="0 0 760 520" aria-hidden="true">
-          <path d="M126 125 C260 125 225 258 356 258"></path>
-          <path d="M126 392 C260 392 225 258 356 258"></path>
-          <path d="M454 258 C548 258 526 258 620 258"></path>
+          <path data-detail-from="one" data-detail-to="core"></path>
+          <path data-detail-from="two" data-detail-to="core"></path>
+          <path data-detail-from="core" data-detail-to="review"></path>
         </svg>
         <div class="detail-node detail-node--one"><i></i><span>Approved knowledge</span><small>Offers · tone · policies</small></div>
         <div class="detail-node detail-node--two"><i></i><span>Live conversation</span><small>Message · channel · context</small></div>
@@ -49,3 +49,28 @@ import { socialEnquiryWorkflow, propertyLeadWorkflow, contentApprovalWorkflow } 
     <section class="editorial-section agents-process section-space--compact"><p class="concept-label">Engagement process</p><h2 data-reveal>Built around your process.</h2><div class="process-line"><div><strong>Map</strong><p>Understand goals and channels.</p></div><div><strong>Prototype</strong><p>Build a focused concept.</p></div><div><strong>Test</strong><p>Refine through representative conversations.</p></div><div><strong>Validate</strong><p>Prepare for launch after review.</p></div></div></section>
   </main><Footer />
 </BaseLayout>
+
+<script>
+  for(const stage of document.querySelectorAll<HTMLElement>('.workflow-detail-poster')) {
+    const svg=stage.querySelector('svg')!;
+    let frame=0;
+    const draw=()=>{
+      frame=0;
+      if(innerWidth<900)return;
+      const box=stage.getBoundingClientRect();
+      svg.setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
+      stage.querySelectorAll<SVGPathElement>('[data-detail-from]').forEach(path=>{
+        const from=stage.querySelector<HTMLElement>(`.detail-node--${path.dataset.detailFrom}`)!.getBoundingClientRect();
+        const to=stage.querySelector<HTMLElement>(`.detail-node--${path.dataset.detailTo}`)!.getBoundingClientRect();
+        const x1=from.right-box.left,y1=from.top+from.height/2-box.top;
+        const x2=to.left-box.left,y2=to.top+to.height/2-box.top;
+        const handle=Math.max(8,(x2-x1)*.5);
+        path.setAttribute('d',`M${x1} ${y1} C${x1+handle} ${y1} ${x2-handle} ${y2} ${x2} ${y2}`);
+      });
+    };
+    const schedule=()=>{if(!frame)frame=requestAnimationFrame(draw)};
+    const observer=new ResizeObserver(schedule);observer.observe(stage);
+    stage.querySelectorAll('.detail-node').forEach(node=>observer.observe(node));
+    document.fonts.ready.then(schedule);window.addEventListener('resize',schedule,{passive:true});schedule();
+  }
+</script>

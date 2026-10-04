@@ -7,6 +7,8 @@ import '@fontsource/barlow-condensed/700.css';
 import '@/styles/global.css';
 import '@/styles/sections.css';
 import '@/styles/pages.css';
+import '@/styles/mobile.css';
+import '@/styles/typography.css';
 
 interface Props { title: string; description: string }
 const { title, description } = Astro.props;
@@ -39,6 +41,7 @@ const structuredData = {
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <slot />
+    <script>import "@/scripts/mobile-reveals";</script>
     <script>
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const revealItems = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
@@ -58,3 +61,4 @@ const structuredData = {
     </script>
   </body>
 </html>
+

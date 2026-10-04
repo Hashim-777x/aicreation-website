@@ -1,4 +1,5 @@
 ---
+import LoopMedia from '@/components/LoopMedia.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/components/PageHero.astro'; import Footer from '@/components/Footer.astro'; import ResponsiveImage from '@/components/ResponsiveImage.astro';
 ---
 <BaseLayout title="AI Creative — AIcreation.pro" description="Human-directed AI campaign images and films.">
@@ -7,9 +8,10 @@ import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/com
     <article class="creative-service" data-reveal><ResponsiveImage desktop="ai-creative-product-macro-desktop" mobile="ai-creative-product-macro-mobile" widths={{desktop:[1280,1920],mobile:[640,941]}} alt="Product macro concept study"/><h3>Product imagery</h3><p>Striking product visuals that capture detail, texture and feeling.</p></article>
     <article class="creative-service" data-reveal><ResponsiveImage desktop="ai-creative-burgundy-fashion-desktop" mobile="ai-creative-burgundy-fashion-mobile" widths={{desktop:[1280,1920],mobile:[640,941]}} alt="Model in burgundy fabric for an editorial fashion story"/><h3>Fashion stories</h3><p>Editorial-style campaigns with a clear point of view.</p></article>
     <article class="creative-service" data-reveal><ResponsiveImage desktop="residence-desktop" mobile="residence-mobile" widths={{desktop:[960,1600],mobile:[640,941]}} alt="Residence concept study"/><h3>Spaces &amp; property</h3><p>Atmospheric imagery for hospitality, real estate and interiors.</p></article>
-    <article class="creative-service short-film-card" data-reveal><ResponsiveImage class="short-film-poster" desktop="ai-creative-short-film-desktop" mobile="ai-creative-short-film-mobile" widths={{desktop:[1280,1920],mobile:[640,941]}} alt="Cinematic poster of wind-swept burgundy fabric framing a moving subject"/><span class="play-mark" aria-label="Short film preview deferred">▶</span><h3>Short films</h3><p>Cinematic brand films and social content, built for impact.</p></article>
+    <article class="creative-service short-film-card" data-reveal><LoopMedia videoKey="short-films" class="short-film-poster" desktop="ai-creative-short-film-desktop" mobile="ai-creative-short-film-mobile" widths={{desktop:[1280,1920],mobile:[640,941]}} alt="Cinematic poster of wind-swept burgundy fabric framing a moving subject"/><h3>Short films</h3><p>Cinematic brand films and social content, built for impact.</p></article>
   </div></section>
   <section class="editorial-section section-space--standard" data-reveal><h2>The direction<br />makes the difference.</h2><div class="comparison-wide"><ResponsiveImage desktop="perfume-source-desktop" mobile="perfume-source-mobile" widths={{desktop:[640,1000],mobile:[640,941]}} alt="Before direction perfume visual"/><ResponsiveImage desktop="perfume-finished-desktop" mobile="perfume-finished-mobile" widths={{desktop:[640,1000],mobile:[640,941]}} alt="After direction perfume visual"/></div></section>
   <section class="editorial-section dark-process section-space--compact"><h2 data-reveal>Human direction,<br />at every stage.</h2><div class="steps-grid"><article><b>01</b><h3>Brief</h3><p>Define goals, audience and visual approach.</p></article><article><b>02</b><h3>Direction</h3><p>Develop concepts, composition and mood.</p></article><article><b>03</b><h3>Production</h3><p>Create and iterate with product checks.</p></article><article><b>04</b><h3>Refinement</h3><p>Fine-tune details, editing and final polish.</p></article></div></section>
   </main><Footer />
 </BaseLayout>
+

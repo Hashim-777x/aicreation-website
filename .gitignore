@@ -5,3 +5,7 @@ dist/
 playwright-report/
 test-results/
 artifacts/
+
+.env
+.env.*
+!.env.example

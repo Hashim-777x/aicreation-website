@@ -1,0 +1,89 @@
+/* Shared type roles across every route. Sizes and layout remain contextual. */
+:root{--font-body:var(--sans);--font-heading:var(--sans);--font-signature:var(--display)}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-heading)}
+p,li,figcaption,label,legend,input,textarea,select,button{font-family:var(--font-body)}
+.hero-copy h1,.project-marquee,.project-sequence__marquee{font-family:var(--font-signature)}
+.page-hero-copy h1,.contact-copy h1,.agents-copy h2,.footer-message h2,.editorial-footer h2{font-family:var(--font-heading);font-weight:500}
+.hero-intro p,.section-heading p,.page-hero-copy .page-intro,.editorial-section .lead,.comparison-note p,.project-summary>p,.project-sequence__description{font-family:var(--font-body)}
+.eyebrow,.concept-label,.hero-note,.hero-label,.work-heading p,.footer-line,.footer-signoff,.method-row b{font-family:var(--font-body)}
+button,input,textarea,select{font-family:var(--font-body)}
+
+/* Shared footer contact and legal information. */
+.footer-meta{position:relative;z-index:2;padding:0 4vw 100px;color:#fff}
+.footer-contact-email{display:inline-block;max-width:100%;font:500 clamp(1.7rem,4.5vw,4.5rem)/1.15 var(--sans);letter-spacing:-.04em;overflow-wrap:anywhere}
+.footer-contact-email:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em}
+.footer-legal-row{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.45);font-size:14px;line-height:1.5}
+.footer-legal-row p{margin:0}.footer-legal-row nav{display:flex;flex-wrap:wrap;gap:24px}.footer-legal-row a{display:inline-flex;align-items:center;min-height:44px}.footer-legal-row a:hover{text-decoration:underline;text-underline-offset:4px}
+.legal-content{max-width:76ch;margin:0 auto;padding:calc(var(--header-height-top) + 48px) 24px 96px}
+.legal-content h1{font-size:clamp(2.8rem,7vw,5rem);line-height:1;letter-spacing:-.04em;margin:0 0 32px}
+.legal-content h2{font-size:1.6rem;line-height:1.2;margin:48px 0 16px}
+.legal-content p{font-size:1rem;line-height:1.65;margin:0 0 24px}.legal-content p a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:899px){.footer-meta{padding:0 20px 48px}.footer-legal-row{align-items:flex-start;flex-direction:column;gap:16px}.legal-content{padding:calc(var(--header-height-top) + 24px) 20px 72px}}
+
+@media(min-width:900px){.footer-content{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}}
+
+/* Keep the shared footer content and contact details in one compact composition. */
+.site-footer{min-height:0}
+.footer-content{min-height:0;padding:56px 4vw 32px;gap:48px;align-items:start}
+.footer-message h2{margin:32px 0 24px;font-size:clamp(2.6rem,4.2vw,4.5rem);line-height:1}
+.footer-meta{padding:0 4vw 64px}
+.footer-contact-email{font-size:clamp(1.7rem,4vw,4rem)}
+.footer-legal-row{margin-top:24px;padding-top:16px}
+.footer-signoff{bottom:20px}
+@media(max-width:899px){
+ .footer-content{min-height:0;padding:48px 20px 24px;gap:32px}
+ .footer-message h2{margin:24px 0 20px;font-size:clamp(2.5rem,8vw,4rem)}
+ .footer-meta{padding:0 20px 24px}
+ .footer-legal-row{margin-top:24px;gap:8px}
+ .footer-signoff{position:relative;inset:auto;margin:0;padding:0 20px 24px}
+}
+
+/* Workflow role colors and centered, content-sized nodes. */
+.workflow-node{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}
+.workflow-node__body,.workflow-node__content{width:100%;text-align:center}
+.workflow-node--input,.workflow-node--context{background:#122329;border-color:#75b9ce}
+.workflow-node--review{background:#292114;border-color:#dbad67}
+.workflow-node--output{background:#15291f;border-color:#8bc3a0}
+.workflow-node--process{background:#17243c;border-color:#89aff3}
+.workflow-node__step{color:#d3e8f0}
+.workflow-node__body small{color:#d1d4d5}
+.workflow-node[aria-pressed=true]{outline:1px solid #f4f2eb;outline-offset:3px}
+.workflow-detail-poster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,auto);align-content:center;align-items:center;gap:32px 24px;padding:32px 24px;min-height:440px}
+.detail-node{position:relative;inset:auto!important;width:100%;min-width:0;min-height:112px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:none!important;padding:16px 12px;z-index:1}
+.detail-node--one{grid-area:1/1;background:#122329;border-color:#75b9ce}
+.detail-node--two{grid-area:3/1;background:#122329;border-color:#75b9ce}
+.detail-node--core{grid-area:2/2;background:#17243c;border-color:#89aff3}
+.detail-node--review{grid-area:2/3;background:#292114;border-color:#dbad67}
+.detail-node small{color:#d1d4d5;line-height:1.4}.detail-node i{display:none}
+.workflow-detail-poster path{stroke:#a8ddf5;stroke-dasharray:none;stroke-width:1.5}
+@media(max-width:899px){.workflow-detail-poster{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:24px;min-height:0}.detail-node{grid-area:auto;min-height:104px}.detail-node:after{display:none}}
+
+.brief-form .form-status,.contact-form .form-status{font:400 1rem/1.5 var(--sans);max-width:46ch;margin:16px 0 0;letter-spacing:0}
+.brief-form[data-state=error] .form-status{color:#9e2424}
+.contact-form[data-state=error] .form-status{color:#ffb4a8}
+.email-draft-options{display:flex;flex-wrap:wrap;gap:12px 24px}
+.email-draft-options[hidden]{display:none}
+.email-draft-options a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px;font-size:16px}
+
+.footer-invitation{align-self:center;padding:24px 0}
+.footer-invitation p{font:400 clamp(1.1rem,1.6vw,1.5rem)/1.4 var(--sans);max-width:30ch;margin:0 0 32px}
+.footer-content.footer-content--contact{grid-template-columns:minmax(0,1fr)}
+.footer-content--contact .footer-message{max-width:58rem}
+#brief{scroll-margin-top:calc(var(--header-height-scrolled) + 24px)}
+@media(max-width:899px){.footer-invitation{padding:0}.footer-invitation p{margin-bottom:32px}}
+
+/* Compact invitation footer after removing repeated forms and email. */
+.footer-content{padding:48px 4vw 40px;gap:clamp(32px,5vw,72px);align-items:center}
+.footer-message h2{margin:28px 0 20px;font-size:clamp(2.5rem,4vw,4.25rem)}
+.footer-invitation{padding:0;justify-self:end;width:min(100%,30rem)}
+.footer-invitation p{margin-bottom:28px}
+.footer-meta{padding:0 4vw 68px}
+.footer-legal-row{margin-top:0;padding-top:16px}
+.footer-content--contact .footer-message{max-width:64rem}
+@media(max-width:899px){
+ .footer-content{padding:40px 20px 32px;gap:32px}
+ .footer-message h2{font-size:clamp(2.4rem,8vw,3.8rem);margin:24px 0 16px}
+ .footer-invitation{justify-self:start;width:100%}
+ .footer-meta{padding:0 20px 24px}
+ .footer-legal-row{margin-top:0}
+}

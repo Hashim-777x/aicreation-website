@@ -1,0 +1,27 @@
+---
+import ResponsiveImage from './ResponsiveImage.astro';
+import { videoSources } from '@/data/videos';
+interface Props {
+  videoKey: string; desktop: string; mobile: string; alt: string; class?: string;
+  widths?: {desktop: number[]; mobile: number[]}; width?: number; height?: number;
+}
+const {videoKey, class: className, ...poster} = Astro.props;
+const sources = videoSources(videoKey);
+---
+{sources ? <div class:list={['loop-media', className]} data-loop-media data-desktop={sources.desktop} data-mobile={sources.mobile}>
+  <ResponsiveImage {...poster}/>
+  <video muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+  <button class="loop-media__toggle" type="button" aria-label="Pause video" hidden>Pause</button>
+</div> : <ResponsiveImage {...poster} class={className}/>}
+<style>
+.loop-media{position:relative;overflow:hidden;background:#08090a}
+.loop-media>picture{display:block;width:100%;height:100%;margin:0}
+.loop-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 180ms ease}
+.loop-media[data-playing] video{opacity:1}
+.loop-media__toggle{position:absolute;right:12px;bottom:12px;z-index:3;min-height:44px;padding:8px 16px;border:1px solid #fff;background:#08090a;color:#fff;font-size:14px;cursor:pointer}
+.loop-media__toggle[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.loop-media video{transition:none}}
+</style>
+<script>
+import '@/scripts/loop-videos';
+</script>

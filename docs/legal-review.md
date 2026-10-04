@@ -1,0 +1,3 @@
+# Legal content before production
+The Privacy and Terms pages describe the current website and are not a completed jurisdiction-specific legal package. Confirm the legal business identity/address, email provider, actual hosting/log practices, purposes and lawful bases, retention periods, processors/transfers and applicable rights before production. Update the privacy notice when forms, Supabase media or analytics are activated. Set project payment, licensing, cancellation and liability provisions in a separate reviewed agreement rather than inventing them for the website.
+Reference: https://ico.org.uk/for-organisations/advice-for-small-organisations/privacy-notices-and-cookies/cookies-and-privacy-notices-in-detail/
