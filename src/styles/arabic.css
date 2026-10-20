@@ -34,3 +34,13 @@ html[lang=ar] .footer-line,html[lang=ar] .footer-signoff,html[lang=ar] .eyebrow,
 }
 @media(prefers-reduced-motion:reduce){html[lang=ar] .cta:hover .cta__icon{transform:none}}
 @media(min-width:900px){html[lang=ar] .hero-copy h1>span:first-child{max-width:43%}html[lang=ar] .agents-copy h2{font-size:clamp(2.4rem,4.5vw,4.5rem)}}
+
+/* Allow Arabic joining marks and ascenders enough room; motion stays inside gutters. */
+html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3{word-break:normal;overflow-wrap:normal}
+html[lang=ar] .hero-copy h1>span{min-width:0;padding-inline:4px;line-height:1.45}
+@media(min-width:900px){
+ html[lang=ar] .hero-copy h1{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:22vw;align-items:start;font-size:clamp(2.6rem,4.5vw,5.4rem);line-height:1.45}
+ html[lang=ar] .hero-copy h1>span:first-child{max-width:100%}
+ html[lang=ar] .hero-copy h1>span:last-child{margin-top:0}
+ html[lang=ar] .hero-intro{top:clamp(290px,22vw,390px);width:clamp(260px,29vw,430px)}
+}

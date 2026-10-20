@@ -10,16 +10,16 @@ import { projects, worlds } from '@/data/arabic-site';
 import { homeWorkflow } from '@/data/workflows';
 ---
 
-<BaseLayout title="AIcreation.pro — بقدرات الذكاء الاصطناعي. وبرؤية بشرية." description="Human-directed AI images and films for products, fashion and spaces.">
+<BaseLayout title="AIcreation.pro — إنتاج بالذكاء الاصطناعي. وتوجيه بشري." description="Human-directed AI images and films for products, fashion and spaces.">
   <main id="main-content">
     <section class="hero" aria-labelledby="hero-title">
-      <ResponsiveImage desktop="hero-fashion-desktop" mobile="hero-fashion-mobile" widths={{ desktop: [1280, 1672], mobile: [640, 941] }} alt="Model in sculptural black silk seated within burgundy architecture" class="hero-media" loading="eager" fetchpriority="high" width={1672} height={941} />
+      <ResponsiveImage desktop="hero-fashion-desktop" mobile="hero-fashion-mobile" widths={{ desktop: [1280, 1672], mobile: [640, 941] }} alt="عارضة ترتدي حريرًا أسود بتكوين نحتي أمام عمارة بلون خمري" class="hero-media" loading="eager" fetchpriority="high" width={1672} height={941} />
       <div class="hero-scrim"></div><Header theme="light" brandTheme="light" />
       <div class="hero-copy">
-        <h1 id="hero-title"><span data-hero-left>بقدرات الذكاء الاصطناعي.</span><span data-hero-right>برؤية<br />بشرية.</span></h1>
+        <h1 id="hero-title"><span data-hero-left>صُنع بالذكاء الاصطناعي.</span><span data-hero-right>بتوجيه<br />بشري.</span></h1>
         <div class="hero-intro"><p>صور وأفلام تصوغها رؤية إبداعية بشرية.</p><ActionLink href="#work" label="استكشف الأعمال" variant="outline-light" /></div>
       </div>
-      <p class="hero-note">أفكار أوسع<br />وغد أقرب للإنسان.</p><p class="hero-label">استوديو للإبداع بالذكاء الاصطناعي</p>
+      <p class="hero-note">أفكار أوسع.<br />وغد أكثر إنسانية.</p><p class="hero-label">استوديو للإبداع بالذكاء الاصطناعي</p>
     </section>
 
     <section id="creative" class="worlds section-light section-space--feature" aria-labelledby="worlds-title">
@@ -76,17 +76,17 @@ import { homeWorkflow } from '@/data/workflows';
 
     <section id="comparison" class="comparison section-light section-space--compact" aria-labelledby="comparison-title">
       <div class="comparison-copy" data-reveal><h2 id="comparison-title">الرؤية الإبداعية<br />تصنع الفارق.</h2></div>
-      <figure><ResponsiveImage desktop="perfume-source-desktop" mobile="perfume-source-mobile" widths={{ desktop: [640, 1000], mobile: [640, 941] }} alt="Clean perfume bottle source concept" /><figcaption>الأصل</figcaption></figure>
-      <figure><ResponsiveImage desktop="perfume-finished-desktop" mobile="perfume-finished-mobile" widths={{ desktop: [640, 1000], mobile: [640, 941] }} alt="Human-directed amber perfume campaign concept" /><figcaption>النتيجة بتوجيه بشري</figcaption></figure>
+      <figure><ResponsiveImage desktop="perfume-source-desktop" mobile="perfume-source-mobile" widths={{ desktop: [640, 1000], mobile: [640, 941] }} alt="تصوّر أساسي لزجاجة عطر بخلفية بسيطة" /><figcaption>الأصل</figcaption></figure>
+      <figure><ResponsiveImage desktop="perfume-finished-desktop" mobile="perfume-finished-mobile" widths={{ desktop: [640, 1000], mobile: [640, 941] }} alt="تصوّر لحملة عطر كهرماني بتوجيه بشري" /><figcaption>النتيجة بتوجيه بشري</figcaption></figure>
       <div class="comparison-note"><p>نقطة بداية واحدة.<br />ونتيجة أكثر عناية.<br />الرؤية البشرية ترتقي<br />بالجيد إلى الاستثنائي.</p><small>معاينة تصورية</small></div>
     </section>
 
     <section id="agents" class="agents section-space--feature" aria-labelledby="agents-title">
       <div class="agents-copy" data-reveal>
         <p class="concept-label">مسارات عمل ذكية</p>
-        <h2 id="agents-title">صمّم مساعدك<br />الذكي</h2>
+        <h2 id="agents-title">صمّم وكيلك<br />الذكي</h2>
         <p>اربط قنواتك. صمّم سير العمل. وأبقِ القرار بيد الإنسان.</p>
-        <ActionLink href="/ar/agents" label="خطّط لمساعدك الذكي" variant="copper" class="cta--utility" />
+        <ActionLink href="/ar/agents" label="خطّط لوكيلك الذكي" variant="copper" class="cta--utility" />
       </div>
       <WorkflowCanvas workflow={homeWorkflow} class="agents-workflow" />
     </section>
@@ -106,9 +106,9 @@ import { homeWorkflow } from '@/data/workflows';
       const heroHeight = Math.max(hero?.offsetHeight ?? window.innerHeight, 1);
       const progress = Math.max(0, Math.min(1, window.scrollY / heroHeight));
       const offset = -Math.min(window.scrollY * .14, 88);
-      const inward = Math.max(48, Math.min(110, window.innerWidth * .065));
-      const outward = Math.max(16, Math.min(34, window.innerWidth * .02));
-      const spread = inward - progress * (inward + outward);
+      const rtlInward = Math.min(48, window.innerWidth * .035);
+      const rtlOutward = Math.min(12, window.innerWidth * .008);
+      const spread = -(rtlInward - progress * (rtlInward + rtlOutward));
       headline.forEach((line) => line.style.setProperty('--hero-parallax', `${offset.toFixed(2)}px`));
       headline[0]?.style.setProperty('--hero-scroll-x', `${spread.toFixed(2)}px`);
       headline[1]?.style.setProperty('--hero-scroll-x', `${(-spread).toFixed(2)}px`);
@@ -122,8 +122,8 @@ import { homeWorkflow } from '@/data/workflows';
       if (event.pointerType === 'touch' || window.innerWidth < 900) return;
       const bounds = hero.getBoundingClientRect();
       const normalized = ((event.clientX - bounds.left) / Math.max(bounds.width, 1) - .5) * 2;
-      headline[0]?.style.setProperty('--hero-pointer-x', `${normalized * -24}px`);
-      headline[1]?.style.setProperty('--hero-pointer-x', `${normalized * 24}px`);
+      headline[0]?.style.setProperty('--hero-pointer-x', `${normalized * 10}px`);
+      headline[1]?.style.setProperty('--hero-pointer-x', `${normalized * -10}px`);
     }, { passive: true });
     hero?.addEventListener('pointerleave', () => headline.forEach((line) => line.style.setProperty('--hero-pointer-x', '0px')));
   }

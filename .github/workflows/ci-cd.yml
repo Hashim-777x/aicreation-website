@@ -1,0 +1,90 @@
+name: Website CI and Cloudflare deployment
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  validate:
+    name: Build and bilingual SEO checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+      PUBLIC_SITE_INDEXABLE: 'true'
+      PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL }}
+      PUBLIC_SUPABASE_VIDEO_BUCKET: ${{ vars.PUBLIC_SUPABASE_VIDEO_BUCKET }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check Astro and build all routes
+        run: npm run build
+      - name: Validate English and Arabic SEO
+        run: npm run check:seo
+      - name: Save the exact validated deployment bundle
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.CLOUDFLARE_DEPLOY_FROM_ACTIONS == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-dist-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 3
+          compression-level: 0
+
+  deploy:
+    name: Deploy validated build to Cloudflare
+    needs: validate
+    # Leave disabled while Cloudflare's Git integration owns deployment.
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.CLOUDFLARE_DEPLOY_FROM_ACTIONS == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    steps:
+      - name: Check out deployment configuration
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download validated bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: website-dist-${{ github.sha }}
+          path: dist/
+      - name: Check deployment credentials
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo 'Missing CLOUDFLARE_API_TOKEN secret'; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo 'Missing CLOUDFLARE_ACCOUNT_ID secret'; exit 1; }
+      - name: Deploy static Worker assets
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '4'
+          command: deploy --config wrangler.jsonc
+      - name: Verify production routes and crawler files
+        run: node scripts/check-live.mjs
