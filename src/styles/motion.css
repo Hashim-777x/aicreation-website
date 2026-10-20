@@ -1,0 +1,26 @@
+/* Native, progressive page transitions preserve full-document script lifecycles. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:page-out 120ms ease-out both}
+::view-transition-new(root){animation:page-in 180ms cubic-bezier(.22,1,.36,1) both}
+@keyframes page-out{to{opacity:0}}
+@keyframes page-in{from{opacity:0}to{opacity:1}}
+.nav-toggle{transition:background-color 140ms ease,color 140ms ease}
+.nav-toggle>span:last-child{display:inline-block;transition:transform 160ms ease}
+.nav-toggle[aria-expanded=true]>span:last-child{transform:rotate(45deg)}
+.site-nav a{transition:opacity 140ms ease,border-color 140ms ease}
+@media(max-width:899px){
+ .site-nav[data-open]{animation:menu-open 180ms cubic-bezier(.22,1,.36,1) both}
+ .site-nav[data-open] a{animation:menu-link-in 180ms ease-out both}
+ .site-nav[data-open] a:nth-child(2){animation-delay:25ms}
+ .site-nav[data-open] a:nth-child(3){animation-delay:50ms}
+ .site-nav[data-open] a:nth-child(4){animation-delay:75ms}
+ .site-nav[data-open] a:nth-child(5){animation-delay:100ms}
+}
+@keyframes menu-open{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes menu-link-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+ ::view-transition-old(root),::view-transition-new(root){animation:none}
+ .site-nav[data-open],.site-nav[data-open] a{animation:none}
+ .nav-toggle,.nav-toggle>span:last-child{transition:none}
+ .nav-toggle[aria-expanded=true]>span:last-child{transform:none}
+}

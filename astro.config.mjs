@@ -4,5 +4,6 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://aicreation.pro',
   output: 'static',
-  integrations: [sitemap()],
+  trailingSlash: 'never',
+  integrations: [sitemap({ filter: (page) => !new URL(page).pathname.startsWith('/404') })],
 });

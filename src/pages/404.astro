@@ -1,0 +1,9 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import ActionLink from '@/components/ActionLink.astro';
+---
+<BaseLayout title="Page not found | AIcreation.pro" description="This page could not be found. Return to AIcreation.pro or discuss your project." noindex>
+  <Header theme="dark" brandTheme="dark" />
+  <main id="main-content" class="legal-content"><h1>That page is missing.</h1><p>The link may have changed. Explore the studio or tell us what you have in mind.</p><ActionLink href="/" label="Return home" variant="primary"/><p><a href="/contact">Discuss your project</a></p></main>
+</BaseLayout>

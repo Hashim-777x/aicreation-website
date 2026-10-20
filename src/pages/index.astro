@@ -23,7 +23,7 @@ import { homeWorkflow } from '@/data/workflows';
     </section>
 
     <section id="creative" class="worlds section-light section-space--feature" aria-labelledby="worlds-title">
-      <header class="section-heading worlds-heading" data-reveal><h2 id="worlds-title">Made for your world.</h2><p>Products. People. Places. AI imagery and film, directed for real-world impact.</p></header>
+      <header class="section-heading worlds-heading" data-reveal><h2 id="worlds-title">Made for your world.</h2><p>Human-directed AI product imagery, fashion campaigns and property visuals. Explore our <a href="/ai-creative">AI creative services</a>.</p></header>
       <div class="world-grid" data-reveal>
         {worlds.map((world) => <article class={`world-card ${world.className}`}><LoopMedia videoKey={world.slug} desktop={`${world.slug}-desktop`} mobile={`${world.slug}-mobile`} widths={world.slug === 'residence' ? { desktop: [960, 1600], mobile: [640, 941] } : { desktop: [720, 1200], mobile: [640, 941] }} alt={`${world.title} concept study`} /><div class="world-caption"><h3>{world.title}</h3><span>Concept study</span></div></article>)}
       </div>

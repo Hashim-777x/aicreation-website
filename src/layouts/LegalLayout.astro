@@ -7,6 +7,6 @@ const {title, description} = Astro.props;
 ---
 <BaseLayout title={`${title} — AIcreation.pro`} description={description}>
   <Header theme="dark" brandTheme="dark"/>
-  <main class="legal-content"><h1>{title}</h1><slot/></main>
+  <main id="main-content" class="legal-content"><h1>{title}</h1><slot/></main>
   <Footer/>
 </BaseLayout>

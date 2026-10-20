@@ -9,17 +9,16 @@ import '@/styles/sections.css';
 import '@/styles/pages.css';
 import '@/styles/mobile.css';
 import '@/styles/typography.css';
+import '@/styles/motion.css';
+import { routeSeo } from '@/data/seo';
+import { structuredDataFor } from '@/data/structured-data';
 
-interface Props { title: string; description: string }
-const { title, description } = Astro.props;
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'AIcreation.pro',
-  url: Astro.site?.href ?? Astro.url.origin,
-  email: 'hello@aicreation.pro',
-  description,
-};
+interface Props { title: string; description: string; noindex?: boolean }
+const route = Astro.url.pathname.replace(/\/$/, '') || '/';
+const { title, description } = routeSeo[route] ?? Astro.props;
+const canonical = new URL(route, Astro.site ?? 'https://aicreation.pro').href;
+const socialImage = new URL('/media/social-preview.jpg', Astro.site ?? 'https://aicreation.pro').href;
+const structuredData = structuredDataFor(route, canonical, title, description);
 ---
 <!doctype html>
 <html lang="en">
@@ -32,13 +31,24 @@ const structuredData = {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={canonical} />
+        <meta name="robots" content={(Astro.props.noindex || import.meta.env.PUBLIC_SITE_INDEXABLE === 'false') ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+    <meta property="og:site_name" content="AIcreation.pro" />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="AIcreation.pro — human-directed creative imagery" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href={Astro.url} />
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={canonical} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\u003c')} />
     <title>{title}</title>
   </head>
   <body>
+    <noscript><style>[data-reveal]{opacity:1!important;transform:none!important;clip-path:none!important}</style></noscript>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <slot />
     <script>import "@/scripts/mobile-reveals";</script>

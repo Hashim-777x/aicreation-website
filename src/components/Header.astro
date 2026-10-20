@@ -70,6 +70,16 @@ const initialTheme = theme === 'auto' ? 'dark' : theme;
     button.setAttribute('aria-expanded', String(!open));
     nav?.toggleAttribute('data-open', !open);
   });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && button?.getAttribute('aria-expanded') === 'true') {
+      button.setAttribute('aria-expanded', 'false'); nav?.removeAttribute('data-open'); button.focus();
+    }
+  });
+  document.addEventListener('pointerdown', (event) => {
+    if (button?.getAttribute('aria-expanded') === 'true' && !header?.contains(event.target as Node)) {
+      button.setAttribute('aria-expanded', 'false'); nav?.removeAttribute('data-open');
+    }
+  });
   nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
     button?.setAttribute('aria-expanded', 'false');
     nav.removeAttribute('data-open');

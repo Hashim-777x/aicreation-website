@@ -2,8 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/components/PageHero.astro'; import Footer from '@/components/Footer.astro'; import ResponsiveImage from '@/components/ResponsiveImage.astro'; import { projects } from '@/data/site';
 ---
 <BaseLayout title="Selected Work — AIcreation.pro" description="Concept studies in product, fashion and spaces.">
-  <main>
-    <PageHero headerTheme="dark" brandTheme="dark" class="work-page-hero" title="Selected<br />work." intro="Concept studies in image, film and space." desktop="work-page-hero-desktop" mobile="work-page-hero-mobile" />
+  <main id="main-content">
+    <PageHero headerTheme="dark" brandTheme="dark" class="work-page-hero" title="Selected<br />work." intro="Human-directed AI concept studies in product imagery, fashion campaigns and architectural visualisation." desktop="work-page-hero-desktop" mobile="work-page-hero-mobile" />
     <section class="editorial-section work-index section-space--feature">
       {projects.map((project)=><article id={project.slug} class="work-index-row" data-reveal><span>{project.number}</span><div><strong>{project.title.toUpperCase()}</strong><p>Concept study · human directed.</p></div><ResponsiveImage desktop={`${project.slug}-desktop`} mobile={`${project.slug}-mobile`} widths={{desktop:[800,1280],mobile:[640,941]}} alt={project.previewAlt} /></article>)}
     </section>

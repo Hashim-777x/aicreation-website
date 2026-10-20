@@ -87,3 +87,6 @@ button,input,textarea,select{font-family:var(--font-body)}
  .footer-meta{padding:0 20px 24px}
  .footer-legal-row{margin-top:0}
 }
+
+@media(min-width:900px){.studio-page-hero .page-hero-copy h1{font-size:clamp(3rem,5.2vw,6rem);line-height:.95}}
+.worlds-heading p a{text-decoration:underline;text-underline-offset:3px}
