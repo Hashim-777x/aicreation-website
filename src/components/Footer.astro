@@ -1,8 +1,11 @@
 ---
 import Brand from './Brand.astro';
+import { isArabic, basePath, translate, localizeHref } from '@/i18n/utils';
 
 import ActionLink from './ActionLink.astro';
-const route = Astro.url.pathname.replace(/\/$/, '') || '/';
+const route = basePath(Astro.url.pathname);
+const arabic = isArabic(Astro.url.pathname);
+const t = (text:string) => translate(text, arabic);
 const isContact = route === '/contact';
 const messages: Record<string, { lines: string[]; note: string; copy: string; action: string }> = {
   '/': { lines: ['Your next chapter', 'deserves imagination.'], note: 'AI made. Human directed.', copy: 'A clear idea. A considered direction. Tell us what your brand needs next.', action: 'Discuss your project' },
@@ -23,27 +26,27 @@ const message = messages[route] ?? messages['/'];
     <source media="(min-width: 768px)" type="image/webp" srcset="/media/footer/cosmic-footer-desktop-1280.webp 1280w, /media/footer/cosmic-footer-desktop-1920.webp 1920w, /media/footer/cosmic-footer-desktop-2560.webp 2560w, /media/footer/cosmic-footer-desktop-3840.webp 3840w" />
     <source media="(max-width: 767px)" type="image/png" srcset="/media/footer/cosmic-footer-mobile.png" />
     <source media="(min-width: 768px)" type="image/png" srcset="/media/footer/cosmic-footer-desktop.png" />
-    <img src="/media/footer/cosmic-footer-desktop.png" alt="A lone figure in a grass field beneath a detailed Earth-like planet and deep star field" loading="lazy" decoding="async" width="3840" height="1646" />
+    <img src="/media/footer/cosmic-footer-desktop.png" alt={t('A lone figure in a grass field beneath a detailed Earth-like planet and deep star field')} loading="lazy" decoding="async" width="3840" height="1646" />
   </picture>
   <div class="footer-overlay"></div>
   <div class:list={["footer-content", {"footer-content--contact": isContact}]}>
     <div class="footer-message">
-      <a class="brand" href="/" aria-label="AIcreation.pro home"><Brand variant="white" /></a>
-      <h2>{message.lines.map((line, index) => <>{index > 0 && <br />}{line}</>)}</h2>
-      <p class="footer-line">{message.note}</p>
+      <a class="brand" href={localizeHref('/', arabic)} aria-label="AIcreation.pro"><Brand variant="white" /></a>
+      <h2>{message.lines.map((line, index) => <>{index > 0 && <br />}{t(line)}</>)}</h2>
+      <p class="footer-line">{t(message.note)}</p>
     </div>
     {!isContact && <div class="footer-invitation">
-      <p>{message.copy}</p>
+      <p>{t(message.copy)}</p>
       <ActionLink href="/contact#brief" label={message.action} variant="inverse" />
     </div>}
   </div>
   <div class="footer-meta">
     <div class="footer-legal-row">
       <p>© {new Date().getFullYear()} AIcreation.pro</p>
-      <nav aria-label="Legal navigation"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Use</a></nav>
+      <nav aria-label={arabic ? 'الروابط القانونية' : 'Legal navigation'}><a href={localizeHref('/privacy', arabic)}>{t('Privacy Policy')}</a><a href={localizeHref('/terms', arabic)}>{t('Terms of Use')}</a></nav>
     </div>
   </div>
-  <p class="footer-signoff"><Brand variant="white" symbolOnly={true} class="brand-signature-mark" />A more human tomorrow.</p>
+  <p class="footer-signoff"><Brand variant="white" symbolOnly={true} class="brand-signature-mark" />{t('A more human tomorrow.')}</p>
 </footer>
 
 <script>

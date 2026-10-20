@@ -1,18 +1,25 @@
 ---
 import { navItems } from '@/data/site';
 import Brand from './Brand.astro';
+import { isArabic, basePath, localizeHref, translate } from '@/i18n/utils';
+const arabic = isArabic(Astro.url.pathname);
+const route = basePath(Astro.url.pathname);
+const switchRoute = ['/', '/work', '/ai-creative', '/agents', '/studio', '/contact', '/privacy', '/terms'].includes(route) ? route : '/';
+const t = (text:string) => translate(text, arabic);
 interface Props { theme?: 'light' | 'dark' | 'auto'; brandTheme?: 'light' | 'dark'; sticky?: boolean }
 const { theme = 'dark', brandTheme = theme === 'light' ? 'light' : 'dark', sticky = false } = Astro.props;
 const initialTheme = theme === 'auto' ? 'dark' : theme;
 ---
 <header class:list={['site-header', `header-${initialTheme}`, { 'header-sticky': sticky }]} data-header data-header-mode={theme} data-theme={initialTheme} data-brand-theme={brandTheme}>
-  <a class="brand" href="/" aria-label="AIcreation.pro home"><Brand variant={brandTheme === 'light' ? 'white' : 'black'} /></a>
+  <a class="brand" href={localizeHref('/', arabic)} aria-label={arabic ? 'الصفحة الرئيسية AIcreation.pro' : 'AIcreation.pro home'}><Brand variant={brandTheme === 'light' ? 'white' : 'black'} /></a>
+  <div class="header-controls">
+    <a class="language-switch" href={arabic ? switchRoute : localizeHref(switchRoute, true)} lang={arabic ? 'en' : 'ar'} hreflang={arabic ? 'en' : 'ar'} aria-label={arabic ? 'Switch to English' : 'التبديل إلى العربية'}>{arabic ? 'EN' : 'العربية'}</a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
     <Brand variant={initialTheme === 'light' ? 'white' : 'black'} symbolOnly={true} />
-    <span>Menu</span><span aria-hidden="true">＋</span>
-  </button>
-  <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-    {navItems.map((item) => <a href={item.href} aria-current={Astro.url.pathname === item.href ? 'page' : undefined}>{item.label}</a>)}
+    <span>{t('Menu')}</span><span aria-hidden="true">＋</span>
+  </button></div>
+  <nav id="site-nav" class="site-nav" aria-label={arabic ? 'التنقل الرئيسي' : 'Primary navigation'}>
+    {navItems.map((item) => <a href={localizeHref(item.href, arabic)} aria-current={route === item.href ? 'page' : undefined}>{t(item.label)}</a>)}
   </nav>
 </header>
 

@@ -1,3 +1,4 @@
+const arabic = document.documentElement.lang === 'ar';
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const narrow = matchMedia('(max-width: 767px)');
 type Connection = { saveData?: boolean };
@@ -25,13 +26,13 @@ for (const stage of document.querySelectorAll<HTMLElement>('[data-loop-media]'))
       await video.play();
       if (current !== generation || !visible || document.hidden || reduced.matches || pausedByUser) { video.pause(); return; }
       stage.setAttribute('data-playing', ''); toggle.hidden = false;
-      toggle.textContent = 'Pause'; toggle.setAttribute('aria-label','Pause video');
+      toggle.textContent = arabic ? 'إيقاف مؤقت' : 'Pause'; toggle.setAttribute('aria-label',arabic ? 'إيقاف الفيديو مؤقتًا' : 'Pause video');
     } catch { if (current === generation) { stage.removeAttribute('data-playing'); toggle.hidden = true; } }
   };
   toggle.addEventListener('click', () => {
     pausedByUser = !pausedByUser;
-    toggle.textContent = pausedByUser ? 'Play' : 'Pause';
-    toggle.setAttribute('aria-label', pausedByUser ? 'Play video' : 'Pause video');
+    toggle.textContent = pausedByUser ? (arabic ? 'تشغيل' : 'Play') : (arabic ? 'إيقاف مؤقت' : 'Pause');
+    toggle.setAttribute('aria-label', pausedByUser ? (arabic ? 'تشغيل الفيديو' : 'Play video') : (arabic ? 'إيقاف الفيديو مؤقتًا' : 'Pause video'));
     void update();
   });
   video.addEventListener('error', () => { failed = true; reset(); });

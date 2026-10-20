@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import {readFile, access} from 'node:fs/promises';
 import {resolve} from 'node:path';
 const root=resolve('dist');
-const routes=['/','/work','/ai-creative','/agents','/studio','/contact','/privacy','/terms'];
+const englishRoutes=['/','/work','/ai-creative','/agents','/studio','/contact','/privacy','/terms'];
+const routes=[...englishRoutes,...englishRoutes.map(route=>route==='/'?'/ar':`/ar${route}`)];
 const titles=new Set();
 const descriptions=new Set();
 const attr=(tag,key)=>tag.match(new RegExp(`\\b${key}="([^"]*)"`))?.[1];
@@ -19,10 +20,18 @@ for(const route of routes){
  assert.equal(attr(tagFor(html,'property','og:url'),'content'),`https://aicreation.pro${route}`);
  assert(!attr(tagFor(html,'name','robots'),'content').includes('noindex'),`${route}: production blocked`);
  assert(html.includes('id="main-content"'),`${route}: missing skip target`);
+ const arabic=route==='/ar'||route.startsWith('/ar/');
+ assert(html.includes(`lang="${arabic?'ar':'en'}"`),`${route}: wrong language`);
+ assert(html.includes(`dir="${arabic?'rtl':'ltr'}"`),`${route}: wrong direction`);
+ const base=route.replace(/^\/ar(?=\/|$)/,'')||'/';
+ for(const lang of ['en','ar','x-default']){
+   const target=lang==='ar'?(base==='/'?'/ar':`/ar${base}`):base;
+   assert.equal(attr(tagFor(html,'hreflang',lang),'href'),`https://aicreation.pro${target}`,`${route}: incorrect ${lang} alternate`);
+ }
  const schema=JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
  assert(schema['@graph'].some(node=>node['@type']==='Organization'));
  assert(schema['@graph'].some(node=>node['@type']==='WebSite'));
- if(['/agents','/ai-creative'].includes(route))assert(schema['@graph'].some(node=>node['@type']==='Service'));
+ if(['/agents','/ai-creative','/ar/agents','/ar/ai-creative'].includes(route))assert(schema['@graph'].some(node=>node['@type']==='Service'));
  for(const [tag] of html.matchAll(/<img\b[^>]*>/g)){
   assert.notEqual(attr(tag,'alt'),undefined,`${route}: image missing alt`);
   const src=attr(tag,'src');if(src?.startsWith('/'))await access(resolve(root,src.slice(1)));

@@ -1,4 +1,6 @@
 ---
+import { isArabic, translate } from '@/i18n/utils';
+const arabic = isArabic(Astro.url.pathname);
 interface Props {
   desktop: string;
   mobile: string;
@@ -36,7 +38,7 @@ const srcset = (slug: string, sizes: number[], format: string) =>
   <source media="(min-width: 768px)" type="image/png" srcset={`/media/${desktop}-original.png`} />
   <img
     src={`/media/${desktop}-original.png`}
-    alt={alt}
+    alt={translate(alt, arabic)}
     loading={loading}
     fetchpriority={fetchpriority}
     decoding={loading === 'eager' ? 'sync' : 'async'}

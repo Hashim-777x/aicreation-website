@@ -1,4 +1,4 @@
-export function structuredDataFor(route: string, canonical: string, title: string, description: string) {
+export function structuredDataFor(route: string, canonical: string, title: string, description: string, language = 'en') {
   const origin = 'https://aicreation.pro';
   const organization = {
     '@type': 'Organization', '@id': `${origin}/#organization`, name: 'AIcreation.pro',
@@ -10,12 +10,12 @@ export function structuredDataFor(route: string, canonical: string, title: strin
     : route === '/agents' ? { name: 'AI workflow automation', serviceType: ['Enquiry workflows', 'Property lead workflows', 'Content approval workflows'] } : undefined;
   const page = {
     '@type': pageType, '@id': `${canonical}#webpage`, url: canonical, name: title, description,
-    inLanguage: 'en', isPartOf: {'@id':`${origin}/#website`}, about: {'@id':organization['@id']},
+    inLanguage: language, isPartOf: {'@id':`${origin}/#website`}, about: {'@id':organization['@id']},
     ...(service ? {mainEntity: {'@id':`${canonical}#service`}} : {}),
   };
   return {'@context':'https://schema.org', '@graph':[
     organization,
-    {'@type':'WebSite','@id':`${origin}/#website`,url:`${origin}/`,name:'AIcreation.pro',publisher:{'@id':organization['@id']},inLanguage:'en'},
+    {'@type':'WebSite','@id':`${origin}/#website`,url:`${origin}/`,name:'AIcreation.pro',publisher:{'@id':organization['@id']},inLanguage:['en','ar']},
     page,
     ...(service ? [{'@type':'Service','@id':`${canonical}#service`,...service,url:canonical,description,provider:{'@id':organization['@id']}}] : []),
   ]};

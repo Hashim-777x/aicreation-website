@@ -1,8 +1,12 @@
 ---
 import WorkflowNode from './WorkflowNode.astro';
+import { isArabic, translate } from '@/i18n/utils';
 import type { WorkflowData } from '@/data/workflows';
 interface Props { workflow: WorkflowData; class?: string; compact?: boolean }
-const { workflow, class: className = '', compact = false } = Astro.props;
+const { workflow: originalWorkflow, class: className = '', compact = false } = Astro.props;
+const arabic = isArabic(Astro.url.pathname);
+const t = (text:string) => translate(text, arabic);
+const workflow = {...originalWorkflow, label:t(originalWorkflow.label), title:t(originalWorkflow.title), summary:t(originalWorkflow.summary), nodes:originalWorkflow.nodes.map(node=>({...node,title:t(node.title),copy:t(node.copy),step:t(node.step)}))};
 ---
 <section class:list={['workflow-canvas', `workflow-canvas--${workflow.id}`, compact && 'workflow-canvas--compact', className]} data-workflow-canvas data-workflow-id={workflow.id} aria-labelledby={`${workflow.id}-title`}>
   <header class="workflow-canvas__header">

@@ -1,0 +1,76 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Footer from '@/components/Footer.astro';
+import WorkflowCanvas from '@/components/WorkflowCanvas.astro';
+import WorkflowStory from '@/components/WorkflowStory.astro';
+import ActionLink from '@/components/ActionLink.astro';
+import { socialEnquiryWorkflow, propertyLeadWorkflow, contentApprovalWorkflow } from '@/data/workflows';
+---
+<BaseLayout title="AI الأتمتة — AIcreation.pro" description="Focused مسارات عمل ذكية with human review and control.">
+  <main id="main-content">
+    <PageHero theme="dark" headerTheme="light" brandTheme="light" title="صمّم مساعديك الأذكياء" intro="أتمتة الاستفسارات والعملاء العقاريين واعتماد المحتوى، مع بقاء القرار بيد الإنسان." desktop="automation-background-desktop" mobile="automation-background-mobile" cta={{label:'خطّط لمساعدك الذكي',href:'/ar/contact',variant:'copper',class:'cta--utility'}} />
+
+    <section class="agents-intro editorial-section section-space--standard" aria-labelledby="workflow-stories-title">
+      <p class="concept-label">تصوّرات لسير العمل</p>
+      <h2 id="workflow-stories-title" data-reveal>ابدأ بعملية واحدة<br />ذات قيمة.</h2>
+      <p class="lead">توضّح هذه الأمثلة كيف يمكن لمساعد متخصّص دعم المهام المتكررة، مع احتفاظ الإنسان بالقرار النهائي.</p>
+    </section>
+
+    <section class="agents-demo-section section-space--feature" aria-label="استفسار اجتماعي workflow concept">
+      <WorkflowCanvas workflow={socialEnquiryWorkflow} class="agents-demo-canvas" />
+    </section>
+
+    <section class="workflow-story-section section-space--standard" aria-label="Additional workflow concepts">
+      <WorkflowStory workflow={propertyLeadWorkflow} />
+      <WorkflowStory workflow={contentApprovalWorkflow} tone="dark" />
+    </section>
+
+    <section class="workflow-detail-section section-space--feature" aria-labelledby="detail-title">
+      <div class="workflow-detail-copy">
+        <p class="concept-label">تصوّر لتفاصيل النظام</p>
+        <h2 id="detail-title">السياق حاضر.<br />والقرار لك.</h2>
+        <p>نظرة أقرب إلى الروابط والمعلومات المعتمدة ونقطة المراجعة التي تضبط سير العمل.</p>
+        <ActionLink href="/ar/contact" label="ناقش سير عملك" variant="copper" />
+      </div>
+      <div class="workflow-detail-poster" role="img" aria-label="Concept diagram showing approved context entering an AI draft before human review">
+        <svg viewBox="0 0 760 520" aria-hidden="true">
+          <path data-detail-from="one" data-detail-to="core"></path>
+          <path data-detail-from="two" data-detail-to="core"></path>
+          <path data-detail-from="core" data-detail-to="review"></path>
+        </svg>
+        <div class="detail-node detail-node--one"><i></i><span>المعرفة المعتمدة</span><small>العروض · الأسلوب · السياسات</small></div>
+        <div class="detail-node detail-node--two"><i></i><span>المحادثة الحالية</span><small>الرسالة · القناة · السياق</small></div>
+        <div class="detail-node detail-node--core"><i></i><span>مسودة الرد</span><small>من المعلومات المصرّح بها</small></div>
+        <div class="detail-node detail-node--review"><i></i><span>المراجعة البشرية</span><small>اعتماد · تعديل · إعادة توجيه</small></div>
+      </div>
+    </section>
+
+    <section class="editorial-section agents-process section-space--compact"><p class="concept-label">مراحل التعاون</p><h2 data-reveal>مصمّم حول طريقة عملك.</h2><div class="process-line"><div><strong>التحديد</strong><p>نفهم الأهداف والقنوات.</p></div><div><strong>النموذج الأولي</strong><p>نبني تصوّرًا محدّدًا.</p></div><div><strong>الاختبار</strong><p>نحسّن عبر محادثات تمثّل الواقع.</p></div><div><strong>التحقق</strong><p>نستعد للإطلاق بعد المراجعة.</p></div></div></section>
+  </main><Footer />
+</BaseLayout>
+
+<script>
+  for(const stage of document.querySelectorAll<HTMLElement>('.workflow-detail-poster')) {
+    const svg=stage.querySelector('svg')!;
+    let frame=0;
+    const draw=()=>{
+      frame=0;
+      if(innerWidth<900)return;
+      const box=stage.getBoundingClientRect();
+      svg.setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
+      stage.querySelectorAll<SVGPathElement>('[data-detail-from]').forEach(path=>{
+        const from=stage.querySelector<HTMLElement>(`.detail-node--${path.dataset.detailFrom}`)!.getBoundingClientRect();
+        const to=stage.querySelector<HTMLElement>(`.detail-node--${path.dataset.detailTo}`)!.getBoundingClientRect();
+        const x1=from.right-box.left,y1=from.top+from.height/2-box.top;
+        const x2=to.left-box.left,y2=to.top+to.height/2-box.top;
+        const handle=Math.max(8,(x2-x1)*.5);
+        path.setAttribute('d',`M${x1} ${y1} C${x1+handle} ${y1} ${x2-handle} ${y2} ${x2} ${y2}`);
+      });
+    };
+    const schedule=()=>{if(!frame)frame=requestAnimationFrame(draw)};
+    const observer=new ResizeObserver(schedule);observer.observe(stage);
+    stage.querySelectorAll('.detail-node').forEach(node=>observer.observe(node));
+    document.fonts.ready.then(schedule);window.addEventListener('resize',schedule,{passive:true});schedule();
+  }
+</script>

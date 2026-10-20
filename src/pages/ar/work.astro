@@ -1,0 +1,12 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'; import PageHero from '@/components/PageHero.astro'; import Footer from '@/components/Footer.astro'; import ResponsiveImage from '@/components/ResponsiveImage.astro'; import { projects } from '@/data/arabic-site';
+---
+<BaseLayout title="Selected الأعمال — AIcreation.pro" description="Concept studies in product, fashion and spaces.">
+  <main id="main-content">
+    <PageHero headerTheme="dark" brandTheme="dark" class="work-page-hero" title="أعمال<br />مختارة." intro="دراسات تصورية لصور المنتجات وحملات الأزياء والتصوّر المعماري، بتوجيه إبداعي بشري." desktop="work-page-hero-desktop" mobile="work-page-hero-mobile" />
+    <section class="editorial-section work-index section-space--feature">
+      {projects.map((project)=><article id={project.slug} class="work-index-row" data-reveal><span>{project.number}</span><div><strong>{project.title.toUpperCase()}</strong><p>دراسة تصورية · بتوجيه بشري.</p></div><ResponsiveImage desktop={`${project.slug}-desktop`} mobile={`${project.slug}-mobile`} widths={{desktop:[800,1280],mobile:[640,941]}} alt={project.previewAlt} /></article>)}
+    </section>
+    <section class="editorial-section section-space--standard" data-reveal><h2>من المنتج<br />إلى المشهد.</h2><p class="lead">المنتج نفسه في عالم مختلف. الذكاء الاصطناعي أداة إبداعية تقودها رؤية بشرية.</p><div class="comparison-wide"><ResponsiveImage desktop="perfume-source-desktop" mobile="perfume-source-mobile" widths={{desktop:[640,1000],mobile:[640,941]}} alt="Perfume source concept"/><ResponsiveImage desktop="perfume-finished-desktop" mobile="perfume-finished-mobile" widths={{desktop:[640,1000],mobile:[640,941]}} alt="Directed perfume campaign concept"/></div><div class="process-line"><div><strong>العملية.</strong></div><div><span>01</span>الموجز</div><div><span>02</span>التوجيه الفني</div><div><span>03</span>الصقل البشري</div></div></section>
+  </main><Footer />
+</BaseLayout>

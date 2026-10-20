@@ -1,0 +1,36 @@
+.header-controls{display:flex;align-items:center;gap:16px;order:3}
+.site-header>.brand{order:1}.site-header>.site-nav{order:2}
+.language-switch{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 8px;font-size:14px;border-bottom:1px solid currentColor;white-space:nowrap}
+.language-switch:hover{opacity:.75}
+.brand-lockup{direction:ltr}
+html[lang=ar]{--sans:'Segoe UI',Tahoma,Arial,sans-serif;--display:'Segoe UI',Tahoma,Arial,sans-serif;--serif:'Segoe UI',Tahoma,Arial,sans-serif}
+html[lang=ar] body{font-family:var(--sans)}
+html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3,html[lang=ar] .hero-copy h1,html[lang=ar] .agents-copy h2{letter-spacing:0;line-height:1.3}
+html[lang=ar] .hero-copy h1{font-size:clamp(3rem,5.7vw,6rem)}
+html[lang=ar] .page-hero-copy h1{font-size:clamp(2.8rem,4.9vw,5.5rem)}
+html[lang=ar] .hero-intro{left:0;right:auto}
+html[lang=ar] .hero-copy h1 span:last-child{text-align:right}
+html[lang=ar] .cta__label{text-align:start}
+html[lang=ar] .cta__icon:not(.cta__icon--external) svg{transform:rotate(180deg)}
+html[lang=ar] .cta:hover .cta__icon{transform:translateX(-4px)}
+html[lang=ar] .page-hero-media{direction:ltr}
+html[lang=ar] .page-hero{direction:ltr}
+html[lang=ar] .page-hero-copy{direction:rtl}
+html[lang=ar] .workflow-detail-poster,html[lang=ar] .workflow-node-list{direction:ltr}
+html[lang=ar] .workflow-node,html[lang=ar] .detail-node{direction:rtl}
+html[lang=ar] .project-marquee,html[lang=ar] .project-sequence__marquee{letter-spacing:0;line-height:1.5}
+html[lang=ar] .project-marquee__track{direction:ltr}
+html[lang=ar] input[type=email],html[lang=ar] input[type=url]{direction:ltr;text-align:start}
+html[lang=ar] .footer-message h2{line-height:1.35;letter-spacing:0;font-size:clamp(2.3rem,3.6vw,3.8rem)}
+html[lang=ar] .footer-line,html[lang=ar] .footer-signoff,html[lang=ar] .eyebrow,html[lang=ar] .concept-label{letter-spacing:0;line-height:1.6}
+@media(max-width:899px){
+ .header-controls{gap:8px}.site-header{gap:8px}.language-switch{padding:0 4px;font-size:13px}
+ html[lang=ar] .hero-copy h1{font-size:clamp(2.4rem,10vw,4.6rem);line-height:1.3}
+ html[lang=ar] .hero-copy{grid-template-rows:auto minmax(270px,36svh) auto auto}
+ html[lang=ar] .hero-intro{inset:auto;width:100%}
+ html[lang=ar] .page-hero-copy h1{font-size:clamp(2.6rem,9vw,4.6rem)}
+ html[lang=ar] .footer-message h2{font-size:clamp(2rem,7.8vw,3.4rem)}
+ html[lang=ar] .contact-copy>h1{font-size:clamp(2.6rem,10vw,4.6rem)}
+}
+@media(prefers-reduced-motion:reduce){html[lang=ar] .cta:hover .cta__icon{transform:none}}
+@media(min-width:900px){html[lang=ar] .hero-copy h1>span:first-child{max-width:43%}html[lang=ar] .agents-copy h2{font-size:clamp(2.4rem,4.5vw,4.5rem)}}

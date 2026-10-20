@@ -1,7 +1,11 @@
 ---
+import { isArabic, translate } from '@/i18n/utils';
 import type { WorkflowData } from '@/data/workflows';
 interface Props { workflow: WorkflowData; tone?: 'light' | 'dark' }
-const { workflow, tone = 'light' } = Astro.props;
+const { workflow: originalWorkflow, tone = 'light' } = Astro.props;
+const arabic = isArabic(Astro.url.pathname);
+const t = (text:string) => translate(text, arabic);
+const workflow = {...originalWorkflow, label:t(originalWorkflow.label), title:t(originalWorkflow.title), summary:t(originalWorkflow.summary), nodes:originalWorkflow.nodes.map(node=>({...node,title:t(node.title),copy:t(node.copy),step:t(node.step)}))};
 ---
 <article class:list={['workflow-story', `workflow-story--${tone}`]} data-workflow-story>
   <header><p class="concept-label">{workflow.label}</p><h3>{workflow.title}</h3><p>{workflow.summary}</p></header>

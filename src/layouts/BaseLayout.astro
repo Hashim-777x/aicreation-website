@@ -10,18 +10,25 @@ import '@/styles/pages.css';
 import '@/styles/mobile.css';
 import '@/styles/typography.css';
 import '@/styles/motion.css';
+import { isArabic, basePath, localizeHref } from '@/i18n/utils';
+import { arabicSeo } from '@/i18n/seo';
+import '@/styles/arabic.css';
 import { routeSeo } from '@/data/seo';
 import { structuredDataFor } from '@/data/structured-data';
 
 interface Props { title: string; description: string; noindex?: boolean }
 const route = Astro.url.pathname.replace(/\/$/, '') || '/';
-const { title, description } = routeSeo[route] ?? Astro.props;
+const arabic = isArabic(route);
+const englishRoute = basePath(route);
+const localizedRoutes = ['/', '/work', '/ai-creative', '/agents', '/studio', '/contact', '/privacy', '/terms'];
+const hasAlternate = localizedRoutes.includes(englishRoute);
+const { title, description } = (arabic ? arabicSeo[englishRoute] : routeSeo[route]) ?? Astro.props;
 const canonical = new URL(route, Astro.site ?? 'https://aicreation.pro').href;
 const socialImage = new URL('/media/social-preview.jpg', Astro.site ?? 'https://aicreation.pro').href;
-const structuredData = structuredDataFor(route, canonical, title, description);
+const structuredData = structuredDataFor(englishRoute, canonical, title, description, arabic ? 'ar' : 'en');
 ---
 <!doctype html>
-<html lang="en">
+<html lang={arabic ? 'ar' : 'en'} dir={arabic ? 'rtl' : 'ltr'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,13 +50,19 @@ const structuredData = structuredDataFor(route, canonical, title, description);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="canonical" href={canonical} />
+        <link rel="canonical" href={canonical} />
+    <meta property="og:locale" content={arabic ? 'ar' : 'en_US'} />
+    {hasAlternate && <>
+      <link rel="alternate" hreflang="en" href={new URL(englishRoute, Astro.site).href} />
+      <link rel="alternate" hreflang="ar" href={new URL(localizeHref(englishRoute, true), Astro.site).href} />
+      <link rel="alternate" hreflang="x-default" href={new URL(englishRoute, Astro.site).href} />
+    </>}
     <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\u003c')} />
     <title>{title}</title>
   </head>
   <body>
     <noscript><style>[data-reveal]{opacity:1!important;transform:none!important;clip-path:none!important}</style></noscript>
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content">{arabic ? 'انتقل إلى المحتوى' : 'Skip to content'}</a>
     <slot />
     <script>import "@/scripts/mobile-reveals";</script>
     <script>
