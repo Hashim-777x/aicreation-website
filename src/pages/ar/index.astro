@@ -148,7 +148,7 @@ import { homeWorkflow } from '@/data/workflows';
   const dataNode = section?.querySelector<HTMLScriptElement>('[data-project-data]');
   const projectData: ProjectState[] = dataNode?.textContent ? JSON.parse(dataNode.textContent) : [];
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-  const desktopLayout = window.matchMedia('(min-width: 900px)');
+  const desktopLayout = window.matchMedia('(min-width: 1280px)');
   let activeProject = 0;
   let interactionSource: InteractionSource = 'scroll';
   let pointerInside = false;
