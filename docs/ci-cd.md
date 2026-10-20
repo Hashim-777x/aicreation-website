@@ -23,3 +23,8 @@ No GitHub workflow has been executed or external credentials configured by writi
 References:
 https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/
 https://developers.cloudflare.com/workers/static-assets/routing/static-site-generation/
+
+## Assets-only configuration correction
+Do not set assets.binding for this site: it has no Worker script (main entrypoint). Static assets are served directly. Wrangler 4.151.3 rejects an assets-only deployment with a binding. The earlier ASSETS binding was removed after the Cloudflare error identified it. Keep html_handling and not_found_handling to preserve canonical routes and real 404s.
+
+Wrangler is pinned to 4.151.3 in devDependencies and the optional deployment action. CI now runs npm run check:deployment after the build; this invokes Wrangler with --dry-run, performs no upload, and needs no API token. Cloudflare's existing npx wrangler deploy command resolves the installed pinned version.

@@ -40,6 +40,8 @@ jobs:
         run: npm run build
       - name: Validate English and Arabic SEO
         run: npm run check:seo
+      - name: Validate Cloudflare deployment configuration
+        run: npm run check:deployment
       - name: Save the exact validated deployment bundle
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.CLOUDFLARE_DEPLOY_FROM_ACTIONS == 'true'
         uses: actions/upload-artifact@v4
@@ -84,7 +86,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          wranglerVersion: '4'
+          wranglerVersion: '4.151.3'
           command: deploy --config wrangler.jsonc
       - name: Verify production routes and crawler files
         run: node scripts/check-live.mjs
